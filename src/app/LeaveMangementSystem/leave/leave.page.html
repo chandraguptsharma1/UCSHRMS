@@ -1,0 +1,93 @@
+<app-header></app-header>
+
+<ion-content>
+  <div>   
+    <ion-item style="padding: 10px;">
+      <ion-grid>
+        <ion-row>
+          <ion-col >
+            <h6 style="color: black;font-weight: bold;font-size: large;">Leave Record</h6>
+          </ion-col>
+          <ion-col col-4 >
+            <ion-buttons style="margin-top: 10px; margin-left: 120px;" routerLink="/add-leave">
+              <ion-button>
+                <ion-icon name="add-circle-outline" style="font-size: 30px;"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>        
+  </div>
+  
+  <div *ngIf="userTypeId == 1">
+    <h1 class="title" style=" font-weight: 400;font-size: medium; margin-left: 20px;" >Leave</h1>
+  </div>
+  <!-- <div *ngIf="userTypeId == 2">
+    <h1 class="title" style=" font-weight: 400;font-size: medium; margin-left: 20px;" >Leave Request</h1>
+  </div> -->
+  <!-- <h1 class="title" style=" font-weight: 400;font-size: medium; margin-left: 20px;" >Leave Request</h1> -->
+  
+  <ion-card *ngFor="let leave of leaves">
+    <ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col style="font-weight: 700;font-size: large;" class="ion-align-self-start">
+            {{leave.reason}}
+          </ion-col>
+          <ion-col style="text-align: end;color: orangered;" >
+            {{leave.status}}
+          </ion-col>
+          
+        </ion-row>
+        <ion-col style="color: darkgrey;">
+          {{leave.date}}
+        </ion-col>
+        <ion-row>
+          <ion-col style="font-weight:bold; margin: 22px;" *ngIf="userTypeId == 1">
+            {{leave.managerName}}
+          </ion-col>
+          <ion-col style="font-weight:bold; margin: 22px;" *ngIf="userTypeId == 2">
+            {{leave.userName}}
+          </ion-col>
+          
+
+          <!---UserType 1-->
+          <div *ngIf="userTypeId == 1" >
+            <ion-card style="padding: 10px;" >
+              <button ion-item>
+                Cancel Request
+              </button></ion-card>
+          </div>
+
+          <!---UserType 2-->
+          <div *ngIf="userTypeId == 2" (click)="presentAlertConfirm()">
+            <ion-card style="padding: 10px;" >
+              <button ion-item>
+                Approve/Reject
+              </button>
+            </ion-card>
+          </div>
+          <!-- <div *ngIf="userTypeId == 2 || status == 1" (click)="presentAlertConfirm()">
+            <ion-card style="padding: 10px;" >
+              <button ion-item>
+                Approve
+              </button>
+            </ion-card>
+          </div> -->
+
+          <!-- <h6>{{status}}</h6> -->
+          
+        </ion-row>
+      </ion-grid>
+    </ion-list>    
+  </ion-card>
+  <!-- <ion-card routerLink="/payslipe" style="padding:10px; text-align: center;">
+    <ion-label>
+      Payslipe 
+    </ion-label>
+  </ion-card> -->
+
+
+</ion-content>

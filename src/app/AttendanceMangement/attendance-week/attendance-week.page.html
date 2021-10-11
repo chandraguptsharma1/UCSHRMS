@@ -1,0 +1,59 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>attendanceWeek</ion-title>
+    <ion-buttons slot="end" >
+      <ion-button routerLink="/add-week">
+        <ion-icon slot="icon-only" name="add-circle-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<app-header></app-header>
+
+<ion-content>
+  <app-breadcrumbs routerLink="/add-week"></app-breadcrumbs>
+  <h6 style="margin-left: 20px;color: grey;">Select Month And Year For The Attendance Record</h6>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-item style="text-align: center;">          
+            <ion-datetime displayFormat="MMMM"  placeholder="select month" value="2012-12-15"></ion-datetime>
+          </ion-item>
+        </ion-card>      
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-item>
+            <ion-datetime [pickerOptions]="customPickerOptions" placeholder="select Year" displayFormat="YYYY" min="1981" max="2002"></ion-datetime>
+          </ion-item>
+        </ion-card>       
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list style="padding: 10px;">
+    <ion-card style="padding: 10px; " routerLink="/attendId">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>Week 1</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>start date</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>end Date</ion-label>
+          </ion-col>
+          <ion-col style="text-align: end;">
+            <ion-label>status</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    
+  </ion-list>
+
+</ion-content>

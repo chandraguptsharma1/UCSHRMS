@@ -1,0 +1,35 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title  style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Employee Record</ion-title>
+    <ion-buttons slot="end" >
+      <ion-button routerLink="/add-employee">
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar> -->
+  <app-header></app-header>
+
+ <ion-content>
+  <app-breadcrumbs></app-breadcrumbs>
+
+  <ion-card *ngFor="let emp of employees" style="background-color: rgb(218, 245, 218);" [routerLink]="['./',emp.id]">
+    <ion-grid>
+    <ion-row>
+      <ion-col style="background-color: darkcyan; text-align: center;">
+          <img src="{{emp.images}}" style="margin-top:30%;">
+      </ion-col>
+       <ion-col style="align-self: flex-end">
+          <p>{{emp.EmpName}}</p>
+          <p>{{emp.EmpAddress}}</p>
+          <p>{{emp.MobNo}}</p>
+          <p>{{emp.JoinDate}}</p>
+      </ion-col>
+      <ion-col style="text-align: end;">
+          <!-- <ion-icon name="trash-outline" style="font-size: xx-large;margin-top: 40px;"></ion-icon> -->
+          <ion-button>Active</ion-button>
+          <ion-button color="success">Inactive</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title  style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;text-align: start;">Week Attendance</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="padding: 10px;">
+    <div>
+      <ion-item>
+        <ion-label>Day</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option value="f">Monday</ion-select-option>
+          <ion-select-option value="m">Tuesday</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div>
+      <ion-item>
+        <ion-label>Start Time</ion-label>
+        <ion-datetime displayFormat="h:mm a" placeholder="select start time"></ion-datetime>
+      </ion-item>
+    </div>
+    <div>
+      <ion-item>
+        <ion-label>End Date</ion-label>
+        <ion-datetime displayFormat="h:mm a" placeholder="select end time"></ion-datetime>
+      </ion-item>
+    </div>
+    <div>
+      <ion-item>
+        <ion-label>Project Id</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option value="f">00012</ion-select-option>
+          <ion-select-option value="m">00013</ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+    </div>
+  
+    <div>
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea rows="6" cols="20"></ion-textarea>
+      </ion-item>
+    </div>
+
+    <div style="text-align: center;padding: 10px;">
+      <ion-button>Save</ion-button>
+    </div>
+   
+  </ion-card>
+  
+  
+
+ 
+
+</ion-content>

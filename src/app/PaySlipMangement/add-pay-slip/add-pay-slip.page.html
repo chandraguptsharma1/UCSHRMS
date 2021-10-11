@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-card>
+  <img src="../../../assets/loginLogo.png" style="height: 80px;"/>
+  <ion-card-content>
+    <ion-card-title>
+      UCS Payslips
+      </ion-card-title>
+    <p>
+      HRMS
+    </p>
+  </ion-card-content>
+</ion-card>
+<ion-card>
+  <ion-card-content>
+    <ion-item>
+      <ion-label>Year</ion-label>
+      <ion-datetime  placeholder="select Year" displayFormat="YYYY" min="2020" max="2050"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Month</ion-label>
+      <ion-datetime displayFormat="MMMM" value="2012-12-15T13:47:20.789"></ion-datetime>
+    </ion-item>
+   
+     <div  style="margin-left: 70px; padding: 20px;">
+      <input type="file" class="file-upload" onchange="console.log(event.target.files)">
+     </div>
+
+  </ion-card-content>
+</ion-card>
+ <div  style="text-align: center;padding: 20px;">
+      <ion-button   size="small">Save PaySlip</ion-button>
+    </div>
+<!-- <div style="text-align: center;">
+  <ion-button (click)="go()">emp-payslip-details</ion-button>
+</div> -->
+
+</ion-content>
+
+
