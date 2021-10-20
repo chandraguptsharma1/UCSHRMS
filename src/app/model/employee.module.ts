@@ -1,9 +1,15 @@
+export interface employee {
+    "empId": string,
+    "empName": string,
+    "password": string,
+    "role": string,
+    "designation": string,
+    "dob": Date,
+    "doj": Date,
+    "department": string,
+    "panNo": string, 
+    "adharNo": string,
+    "status": string,
+    "email":string
 
-export interface employee{
-    id:string;
-    images:string,
-    EmpName:string,
-    EmpAddress:string,
-    MobNo:number,
-    JoinDate:string
 }

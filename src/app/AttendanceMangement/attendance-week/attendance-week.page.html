@@ -9,10 +9,31 @@
   </ion-toolbar>
 </ion-header> -->
 
-<app-header></app-header>
+<ion-header >
+  <ion-toolbar >
+    <ion-grid>
+      <ion-row>
+        <ion-col style="text-align: end;" size="3">
+          <img src="../../../assets/loginLogo.png" style="height: 50px;">
+        </ion-col>
+        <ion-col style=" font-size: larger;font-weight: 700;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" >
+          <h3 class="ion-no-margin" style="margin-top: 13px;">Attendance Record</h3>
+        </ion-col>
+        <ion-col  size="2" >
+          <ion-buttons routerLink="/add-week" style="margin-top: 10px;">
+            <ion-button >
+              <ion-icon name="add-circle-outline" style="font-size: 30px;"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-toolbar>
+</ion-header>
 
 <ion-content>
-  <app-breadcrumbs routerLink="/add-week"></app-breadcrumbs>
+  <!-- <app-breadcrumbs routerLink="/add-week"></app-breadcrumbs> -->
   <h6 style="margin-left: 20px;color: grey;">Select Month And Year For The Attendance Record</h6>
 
   <ion-grid>

@@ -1,4 +1,18 @@
-<app-header></app-header>
+<ion-header>
+  <ion-toolbar >
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <img src="../../../assets/loginLogo.png" style="height: 50px;margin-left: 80px;">
+        </ion-col>
+        <ion-col style="margin-top: 13px;font-size: larger;font-weight: 700;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;margin-left: -120px;" >
+          <h1 class="ion-no-margin">Add Leave </h1>
+        </ion-col>
+        
+      </ion-row>
+    </ion-grid>
+</ion-toolbar>
+</ion-header>
 
 <ion-content>
   
@@ -10,69 +24,75 @@
     </ion-item>        
   </div> -->
 
-  <ion-card>
-    <ion-item>
-      <ion-label>Type Of Leave</ion-label>
-      <ion-select value="brown" okText="Okay" cancelText="Dismiss" [(ngModel)]="carbrand" (onChange)="onChange(carbrand)">
-        <ion-select-option value="brown">Casual</ion-select-option>
-        <ion-select-option value="blonde">Immergency</ion-select-option>
-        <ion-select-option value="black">Personal</ion-select-option>
-        
-      </ion-select>
-    </ion-item>
-  </ion-card>
-
-  <!---Manager Name-->
-  <ion-card>
-    <ion-item>
-      <ion-label>Select Manager Name</ion-label>
-      <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-        <ion-select-option value="brown">Sapan</ion-select-option>
-        <ion-select-option value="blonde">Manish</ion-select-option>
-        <ion-select-option value="black">Prasad</ion-select-option>       
-      </ion-select>
-    </ion-item>
-  </ion-card>
-
-  <!----Reasons For Leave-->
-  <ion-item style="padding: 10px;">
-    <ion-label position="floating">Reasons For Leave</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-
-  <!----- Start Date Of Leave-->
-  <ion-card>
-    <ion-item>
-      <ion-label>Start Date</ion-label>
-      <ion-datetime placeholder="select Date" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09"></ion-datetime>
-    </ion-item>
-  </ion-card>
-
-    <!----- End Date Of Leave-->
-    <ion-card>
+ <form  [formGroup]="addLeaveForm" (ngSubmit)="submitleaveForm()">
+    <ion-card style="padding: 13px;">
       <ion-item>
-        <ion-label>End Date</ion-label>
-        <ion-datetime placeholder="select Date" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09"></ion-datetime>
+        <ion-label>Type Of Leave</ion-label>
+        <ion-select  okText="Okay" cancelText="Dismiss" formControlName="type">
+          <ion-select-option >Casual</ion-select-option>
+          <ion-select-option >Immergency</ion-select-option>
+          <ion-select-option >Personal</ion-select-option>
+        </ion-select>
       </ion-item>
-    </ion-card>
-
-    <!---Discription-->
     
-    <ion-card>
+  
+    <!---Manager Name-->
+    
       <ion-item>
-        <ion-label position="floating">Description</ion-label>
-        <ion-textarea></ion-textarea>
+        <ion-label>Manager Name</ion-label>
+        <ion-select  okText="Okay" cancelText="Dismiss" formControlName="manager">
+          <ion-select-option >Sapan</ion-select-option>
+          <ion-select-option >Manish</ion-select-option>
+          <ion-select-option >Prasad</ion-select-option>       
+        </ion-select>
       </ion-item>
-      <!-- <ion-item>
-        <ion-label>Notes</ion-label>
-        <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
-      </ion-item> -->
+    
+  
+    <!----Reasons For Leave-->
+    <!-- <ion-item style="padding: 10px;">
+      <ion-label position="floating">Reasons For Leave</ion-label>
+      <ion-input formControlName="reasons"></ion-input>
+    </ion-item> -->
+  
+    <!----- Start Date Of Leave-->
+    
+      <ion-item>
+        <ion-label>Start Date</ion-label>
+        <ion-datetime placeholder="select Date" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09" formControlName="startDate"></ion-datetime>
+      </ion-item>
+    
+  
+      <!----- End Date Of Leave-->
+      
+        <ion-item>
+          <ion-label>End Date</ion-label>
+          <ion-datetime placeholder="select Date" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09" formControlName="endDate"></ion-datetime>
+        </ion-item>
+      
+  
+      <!---Discription-->
+      
+      
+        <ion-item>
+          <ion-label position="floating">Description</ion-label>
+          <ion-textarea formControlName="discription"></ion-textarea>
+        </ion-item>
+        <!-- <ion-item>
+          <ion-label>Notes</ion-label>
+          <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
+        </ion-item> -->
+      
+  
+      <!---Button-->
+      <div style="text-align: center;padding: 10px;">
+        <ion-button size="small" style="text-align: center;" type="submit">Submit</ion-button>
+      </div>
     </ion-card>
-
-    <!---Button-->
-    <div style="text-align: center;padding: 10px;">
-      <ion-button size="small" style="text-align: center;">Save Leave Request</ion-button>
-    </div>
+    
+ </form>
+    
+  
+  
     
   
 

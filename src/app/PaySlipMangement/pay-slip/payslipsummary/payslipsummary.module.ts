@@ -8,6 +8,16 @@ import { PayslipsummaryPageRoutingModule } from './payslipsummary-routing.module
 
 import { PayslipsummaryPage } from './payslipsummary.page';
 import { HeaderModule } from 'src/app/components/header/header.module';
+import { NgxEchartsModule } from 'ngx-echarts';
+import * as echarts from 'echarts/core';
+
+import { BarChart } from 'echarts/charts';
+import { TitleComponent, TooltipComponent, GridComponent } from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
+import 'echarts/theme/macarons.js';
+echarts.use(
+  [TitleComponent, TooltipComponent, GridComponent, BarChart, CanvasRenderer]
+);
 
 @NgModule({
   imports: [
@@ -15,7 +25,8 @@ import { HeaderModule } from 'src/app/components/header/header.module';
     FormsModule,
     IonicModule,
     PayslipsummaryPageRoutingModule,
-    HeaderModule
+    HeaderModule,
+    NgxEchartsModule.forRoot({ echarts }),
   ],
   declarations: [PayslipsummaryPage]
 })

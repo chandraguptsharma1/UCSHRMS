@@ -11,30 +11,39 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class EmployeePage implements OnInit {
 
-   
   results: any;
-  employees:employee[];
-
+  employees:any=[];
+  empId:any;
   public items: any = [];
+  router: any;
+  Service: any;
 
-  constructor(private router:Router,private employeeService:EmployeeService,public navCtrl: NavController, ) {
+  constructor(private employeeService:EmployeeService) {
   }
 
   addRecord() {
     this.router.navigate(['add-employee']);
   }
   ngOnInit() {
-    this.employees = this.employeeService.getEmployee();
+    this.empId = 104;
+    //localStorage.getItem('emplId')
+    //this.employees = this.Service.getEmployee();
+   this.employees = this.employeeService.getEmployee();
+   console.log()
     // fetch('./assets/data.json').then(res=>res.json()).then(json=>{
     //   console.log('results::',json);
     //   this.results=json;
     // })
   }
+  // ionViewDidEnter() {
+  //   this.employeeService.GetEmployeeDetail(this.empId).subscribe((response) => {
+  //     this.employees = response;
+  //     console.log(this.employees)
+  //   })
+  // }
 
-  onSelect(item: employee): void {
-    this.navCtrl.navigateForward('/update-employee',);
-  }
-
-  
+  // onSelect(item: employee): void {
+  //   this.navCtrl.navigateRoot('/update-employee-details/item',);
+  // }
 
 }

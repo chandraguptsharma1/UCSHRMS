@@ -3,16 +3,16 @@
   <div style="text-align: center; margin-top: 120px;">
     <img src="../../../assets/loginLogo.png" style="height:250px ;">
   </div>
-  <form [formGroup]="caredentailsform" [ngSubmit]="onSubmit()">
+  <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
     <div style="text-align: center;margin-top: 20px;" id="container">
       <ion-list>
         <ion-item id="rounded">
-          <ion-label position="floating" FormControlName="empId">Email Id</ion-label>
-          <ion-input></ion-input>
+          <ion-label position="floating">EmpId</ion-label>
+          <ion-input formControlName="empId" type="text"></ion-input>
         </ion-item>
         <ion-item id="rounded">
-          <ion-label position="floating" FormControlName="password" >Password</ion-label>
-          <ion-input></ion-input>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input formControlName="password" type="text"></ion-input>
         </ion-item>
       </ion-list>    
     </div>
@@ -21,7 +21,7 @@
     </div>
   
     <div style="text-align: center;">
-      <ion-button type="submit" [disabled]="!caredentailsform" shape="round">
+      <ion-button type="submit">
         Login
       </ion-button>
     </div>

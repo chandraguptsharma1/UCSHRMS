@@ -1,4 +1,23 @@
-<app-header></app-header>
+<ion-header>
+  <ion-toolbar >
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3" style="text-align: end;">
+          <img src="../../../assets/loginLogo.png" style="height: 50px;">
+        </ion-col>
+        <ion-col size="7" style="margin-top: 13px;font-size: larger;font-weight: 700;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" >
+          <h2 class="ion-no-margin">PaySlip Summary</h2>
+        </ion-col>
+        <ion-col size="2" style="text-align: end;margin-top: 10px;">
+          <ion-button>
+            <ion-icon name="cloud-download-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        
+      </ion-row>
+    </ion-grid>
+</ion-toolbar>
+</ion-header>
 
 <ion-content >
   <h5 style="margin-left:20px;color:grey;font-size: 13px;">You Have Earned gross pay of {{loadedpayslip.month}}</h5>
@@ -6,7 +25,7 @@
   <div class="ion-padding">
     <ion-card>
       <ion-card-header>
-        PaySlip Chart
+        <div [options]="options" class="demo-chart" echarts></div>
       </ion-card-header>
       <!-- <ion-card-content>
         <canvas #doughnutCanvas style="position: relative; height:20vh; width:40vw"></canvas>

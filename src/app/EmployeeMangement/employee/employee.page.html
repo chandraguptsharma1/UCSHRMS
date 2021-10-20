@@ -7,7 +7,29 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar> -->
-  <app-header></app-header>
+  <!-- <app-header></app-header> -->
+  <ion-header>
+    <ion-toolbar >
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <img src="../../../assets/loginLogo.png" style="height: 50px;margin-left: 80px;">
+          </ion-col>
+          <ion-col style="margin-top: 13px;font-size: larger;font-weight: 700;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" size="5">
+            <h4 class="ion-no-margin">Employee Record</h4>
+          </ion-col>
+          <ion-col  size="3">
+            <ion-buttons routerLink="/add-employee" style="margin-top: 10px;margin-left: 50px;">
+              <ion-button >
+                <ion-icon name="add-circle-outline" style="font-size: 30px;"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-toolbar>
+  </ion-header>
 
  <ion-content>
   <app-breadcrumbs></app-breadcrumbs>

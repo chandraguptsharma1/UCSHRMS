@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { leave } from 'src/app/model/leave.module';
-import { LeaveService } from 'src/app/services/leave.service';
+import { LeaveService } from 'src/app/services/leave/leave.service';
+
 
 @Component({
   selector: 'app-leave',
@@ -12,7 +13,7 @@ export class LeavePage implements OnInit {
 
   userType : string;
   userTypeId: number;
-  leaves:leave[];
+  leaves:any=[];
 
   status:any;
   
@@ -22,7 +23,7 @@ export class LeavePage implements OnInit {
   constructor(private leaveService:LeaveService,public alertController: AlertController) { }
 
   ngOnInit() {
-    this.leaves = this.leaveService.getLeave();
+    // this.leaves = this.leaveService.getLeave();
     this.userType ="User";
     this.userTypeId= 2;
   }
@@ -51,6 +52,13 @@ export class LeavePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+   ionViewDidEnter() {
+    this.leaveService.getleave().subscribe((response) => {
+      this.leaves = response;
+      console.log(this.leaves)
+    })
   }
 
 }

@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { HeaderModule } from '../components/header/header.module';
+import { BreadcrumbsModule } from '../components/breadcrumbs/breadcrumbs.module';
 
 
 
@@ -23,7 +24,8 @@ const routes: Routes=[
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    HeaderModule
+    HeaderModule,
+    BreadcrumbsModule
     
     
   ],

@@ -1,12 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title style="margin-right: 15px;" >Attendance Record</ion-title>
-    <ion-buttons slot="end" >
-      <ion-button routerLink="/add-attendance">
-        <ion-icon slot="icon-only" name="add-circle-outline" ></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-header >
+  <ion-toolbar >
+    <ion-grid>
+      <ion-row>
+        <ion-col style="text-align: end;" size="3">
+          <img src="../../../assets/loginLogo.png" style="height: 50px;">
+        </ion-col>
+        <ion-col style=" font-size: larger;font-weight: 700;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" >
+          <h3 class="ion-no-margin" style="margin-top: 13px;">Attendance Record</h3>
+        </ion-col>
+        <ion-col  size="2" >
+          <ion-buttons routerLink="/add-attendance" style="margin-top: 10px;">
+            <ion-button >
+              <ion-icon name="add-circle-outline" style="font-size: 30px;"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-toolbar>
 </ion-header>
 
 <ion-content>

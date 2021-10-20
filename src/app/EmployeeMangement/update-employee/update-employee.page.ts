@@ -24,7 +24,7 @@ export class UpdateEmployeePage implements OnInit {
         return;
       }
       const empId=paraMap.get('empId');
-     this.employee= this.empServices.getEmployeeId(empId);
+    //  this.employee= this.empServices.getEmployeeId(empId);
     });
     console.log(this.employee);
   }
