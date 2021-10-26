@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class HomePage {
   
   empId:any;
-  constructor() {
+  date:any;
+  constructor(private platform: Platform,
+    public alertCtrl: AlertController) {
     
   //   Date.prototype.getWeekOfMonth = function () {
   //     var firstDay = new Date(this.setDate(1)).getDay();
@@ -16,10 +19,16 @@ export class HomePage {
   //     return Math.ceil((firstDay + totalDays) / 7);
   // }
   }
+
+  
+  
   ngOnInit() {
     this.empId=localStorage.getItem('empId');
-    console.log(this.empId)
+    console.log(this.empId);
+   
   }
-
+  
+  
+ 
 
 }

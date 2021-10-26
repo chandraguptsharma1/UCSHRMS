@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { employee } from 'src/app/model/employee.module';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { NavController } from '@ionic/angular';
+import { employee } from 'src/app/model/employee/employee.module';
+import { EmployeeService } from 'src/app/services/employee/employee.service';
+import { LoaderService } from 'src/app/services/loading/loader.service';
+import { ToastService } from 'src/app/services/toastMessage/toast.service';
+
 
 
 
@@ -17,11 +21,14 @@ export class AddEmployeePage implements OnInit {
   employeeForm: FormGroup;
   employee:any={};
 
-  
-  
-
   //constructor(private router:Router,private fb : FormBuilder,private authService:EmployeeService) { 
-    constructor(private router:Router,private fb : FormBuilder,private employeeService:EmployeeService) { 
+    constructor(
+      private router:Router,
+      private toastService: ToastService,
+      private fb : FormBuilder,
+      private employeeService:EmployeeService,
+      private loading:LoaderService,
+      private navCtrl:NavController) { 
     this.employeeForm = this.fb.group({
     empName:[''],
     email:[''],
@@ -45,7 +52,8 @@ export class AddEmployeePage implements OnInit {
   }
 
   submitEmployeeForm(){
-
+    
+    this.loading.present();
     const empName = this.employeeForm.get('empName').value
     const email = this.employeeForm.get('email').value
     const password = this.employeeForm.get('password').value
@@ -109,38 +117,33 @@ export class AddEmployeePage implements OnInit {
       password:password,
       role:role,
       status:status,
-      
-   
     }
     console.log(employeeDetails)
     this.employeeService.EmployeeDetail(employeeDetails).subscribe((data:any)=>{
-
+      this.toastService.presentToast('Employee Added');
+      this.router.navigate(['/home']);
+      this.loading.dismiss();
       console.log("im in server",data)
       if(data.resCode = 200){
         //redirect dashboardpage
+        this.loading.dismiss();
       }else{
-        //again redirrect to login page
+        console.log("server not working");
+        this.loading.dismiss();
       }
     });
+    console.log("server not enter")
   }
-
-  
-  
   empId:string;
- 
-
   ngOnInit() {
-    this.empId='101';
+    this.empId='104';
     console.log("EmployeeId",this.empId);
   }
 
-  // submitImage(){
-  //   this.fileChooser.open()
-  // .then(uri => console.log(uri))
-  // .catch(e => console.log(e));
-  // }
+  back(){
+    this.navCtrl.navigateBack('/employee');
+  }
 
   
 
 }
-

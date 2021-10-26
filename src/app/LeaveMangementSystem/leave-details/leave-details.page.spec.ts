@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { AddWeekPage } from './add-week.page';
+import { LeaveDetailsPage } from './leave-details.page';
 
-describe('AddWeekPage', () => {
-  let component: AddWeekPage;
-  let fixture: ComponentFixture<AddWeekPage>;
+describe('LeaveDetailsPage', () => {
+  let component: LeaveDetailsPage;
+  let fixture: ComponentFixture<LeaveDetailsPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddWeekPage ],
+      declarations: [ LeaveDetailsPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddWeekPage);
+    fixture = TestBed.createComponent(LeaveDetailsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

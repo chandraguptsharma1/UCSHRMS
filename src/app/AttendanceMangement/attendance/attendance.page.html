@@ -2,199 +2,152 @@
   <ion-toolbar >
     <ion-grid>
       <ion-row>
+        <ion-col size="2" style="margin-top: 10px;">
+          <ion-buttons (click)="back()">
+            <ion-icon name="chevron-back-circle" style="font-size: 30px;"></ion-icon>
+            
+          </ion-buttons>      
+        </ion-col>
         <ion-col style="text-align: end;" size="3">
           <img src="../../../assets/loginLogo.png" style="height: 50px;">
         </ion-col>
         <ion-col style=" font-size: larger;font-weight: 700;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" >
           <h3 class="ion-no-margin" style="margin-top: 13px;">Attendance Record</h3>
         </ion-col>
-        <ion-col  size="2" >
+        <!-- <ion-col  size="2" >
           <ion-buttons routerLink="/add-attendance" style="margin-top: 10px;">
             <ion-button >
               <ion-icon name="add-circle-outline" style="font-size: 30px;"></ion-icon>
             </ion-button>
           </ion-buttons>
           
-      </ion-col>
+      </ion-col> -->
       </ion-row>
     </ion-grid>
+</ion-toolbar>
+<ion-toolbar style="background-color: rgb(192, 189, 189);">
+    <!-- <div>
+      <ion-label>Select Date Range</ion-label>
+      <ion-select >
+        <ion-select-option *ngFor="let dates of date" [value]="dates">{{dates}}</ion-select-option>
+      </ion-select>
+    </div> -->
+    <div style="padding: 10px;">
+      <ion-select placeholder="Select Date">
+        <ion-select-option *ngFor="let dates of date" [value]="date">{{dates}}</ion-select-option>
+        
+      </ion-select>
+    </div>
+    
+ 
 </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card style="text-align: center;width: 150px;" *ngIf="userType==2">
-    <ion-select placeholder="Select User" okText="Ok" cancelText="Cancel">
-      <ion-select-option value="brown">January</ion-select-option>
-      <ion-select-option value="blonde">February</ion-select-option>
-      <ion-select-option value="black">March</ion-select-option>
-      <ion-select-option value="red">April</ion-select-option>
-     
-      
-    </ion-select>
+  <ion-card style="padding: 15px;">
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col >
+            <ion-label style="font-weight: bold;">Mon(20 Aug)</ion-label>
+          </ion-col>
+          <ion-col >
+            <ion-label>In Time</ion-label>         
+          </ion-col>
+          <ion-col >
+            <ion-label>Out Time</ion-label>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col >
+            <ion-label style="font-weight: bold;">Tue(21 Aug)</ion-label>
+          </ion-col>
+          <ion-col >
+            <ion-label>In Time</ion-label>         
+          </ion-col>
+          <ion-col >
+            <ion-label>Out Time</ion-label>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col >
+            <ion-label style="font-weight: bold;">Wed(22 Aug)</ion-label>
+          </ion-col>
+          <ion-col >
+            <ion-label>In Time</ion-label>         
+          </ion-col>
+          <ion-col >
+            <ion-label>Out Time</ion-label>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col >
+            <ion-label style="font-weight: bold;">Thur(23 Aug)</ion-label>
+          </ion-col>
+          <ion-col >
+            <ion-label>In Time</ion-label>         
+          </ion-col>
+          <ion-col >
+            <ion-label>Out Time</ion-label>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col >
+            <ion-label style="font-weight: bold;">Fri(24 Aug)</ion-label>
+          </ion-col>
+          <ion-col >
+            <ion-label>In Time</ion-label>         
+          </ion-col>
+          <ion-col >
+            <ion-label>Out Time</ion-label>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col >
+            <ion-label style="font-weight: bold;">Sat(25 Aug)</ion-label>
+          </ion-col>
+          <ion-col >
+            <ion-label>In Time</ion-label>         
+          </ion-col>
+          <ion-col >
+            <ion-label>Out Time</ion-label>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-item>
+    
   </ion-card>
-  <br>
-  <!-- <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-select placeholder="Month" okText="Ok" cancelText="Cancel">
-            <ion-select-option value="brown">January</ion-select-option>
-            <ion-select-option value="blonde">February</ion-select-option>
-            <ion-select-option value="black">March</ion-select-option>
-            <ion-select-option value="red">April</ion-select-option>
-           
-            
-          </ion-select>
-        </ion-card>
-   
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <ion-select placeholder="Week" okText="Ok" cancelText="Cancel">
-            <ion-select-option value="brown">First</ion-select-option>
-            <ion-select-option value="blonde">Second</ion-select-option>
-            <ion-select-option value="black">Third</ion-select-option>
-            <ion-select-option value="red">Fourth</ion-select-option>
-          </ion-select>
-        </ion-card>
-  
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
-
-  <div style="margin-top: -30px;margin-left: 15px;">
-    <h3>Week 1</h3>
-  </div>
-
-  <div style="margin-left: 15px;" >
-    <ion-grid>
-     <ion-row>
-      <ion-col>
-        <ion-label>
-          Day
-        </ion-label>
-      </ion-col>
-      <ion-col>
-        <ion-label>
-          InTime
-        </ion-label>
-      </ion-col>
-      <ion-col style="margin-left: -8px;">
-        <ion-label>
-          OutTime
-        </ion-label>
-      </ion-col>
-     </ion-row>
-    </ion-grid>     
-  </div>
-
-  <div>
-    <ion-list>
-      <ion-card  >
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-            <ion-label>Monday</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>09.30AM</ion-label>
-            </ion-col>
-            <ion-col >
-              <ion-label>06.30PM</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-      <ion-card>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-            <ion-label>Tuesday</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>09.30AM</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>06.30PM</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-      <ion-card>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-            <ion-label>Wednesday</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>09.30AM</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>06.30PM</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-      <ion-card>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-            <ion-label>Thursday</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>09.30AM</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>06.30PM</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-      <ion-card>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-            <ion-label>Friday</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>09.30AM</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>06.30PM</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-      <ion-card>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-            <ion-label>Saturday</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>09.30AM</ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>06.30PM</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
-    </ion-list>
-  </div>
-
-  <div *ngIf="userType==2" style=" text-align: center;">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-button>Approve</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button>Reject</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-
+ 
 
 </ion-content>

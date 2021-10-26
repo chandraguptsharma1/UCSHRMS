@@ -2,8 +2,14 @@
   <ion-toolbar >
     <ion-grid>
       <ion-row>
+        <ion-col size="2" style="margin-top: 10px;">
+          <ion-buttons (click)="back()">
+            <ion-icon name="chevron-back-circle" style="font-size: 30px;"></ion-icon>
+            
+          </ion-buttons>      
+        </ion-col>
         <ion-col>
-          <img src="../../../assets/loginLogo.png" style="height: 50px;margin-left: 80px;">
+          <img src="../../../assets/loginLogo.png" style="height: 50px;margin-left: 60px;">
         </ion-col>
         <ion-col style="margin-top: 13px;font-size: larger;font-weight: 700;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;margin-left: -120px;" >
           <h1 class="ion-no-margin">Add Leave </h1>
@@ -16,7 +22,7 @@
 
 <ion-content>
   
-  <h1 class="title" style=" font-weight: 400;font-size: medium; margin-left: 20px;" >Add Leave</h1>
+  <!-- <h1 class="title" style=" font-weight: 400;font-size: medium; margin-left: 20px;" >Add Leave</h1> -->
 
   <!-- <div>   
     <ion-item style="padding: 10px;">
@@ -38,21 +44,22 @@
   
     <!---Manager Name-->
     
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>Manager Name</ion-label>
         <ion-select  okText="Okay" cancelText="Dismiss" formControlName="manager">
           <ion-select-option >Sapan</ion-select-option>
           <ion-select-option >Manish</ion-select-option>
           <ion-select-option >Prasad</ion-select-option>       
         </ion-select>
-      </ion-item>
+      </ion-item> -->
     
   
     <!----Reasons For Leave-->
-    <!-- <ion-item style="padding: 10px;">
+    <ion-item style="padding: 10px;">
       <ion-label position="floating">Reasons For Leave</ion-label>
       <ion-input formControlName="reasons"></ion-input>
-    </ion-item> -->
+      <!-- <show-errors [control]="addLeaveFormaddLeaveForm.controls.reasons"></show-errors> -->
+    </ion-item>
   
     <!----- Start Date Of Leave-->
     

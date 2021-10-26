@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Chart } from 'chart.js';
 import { EmpSlip } from 'src/app/model/empPayslip.module';
 import { EmpPayslipService } from 'src/app/services/empPayslip.service';
@@ -83,7 +84,9 @@ export class PayslipsummaryPage implements OnInit {
     ]
   };
 
-  constructor(private activatedRoute :ActivatedRoute,private payslipServices:EmpPayslipService) {}
+  constructor(private activatedRoute :ActivatedRoute,
+    private payslipServices:EmpPayslipService,
+    private navCtrl:NavController) {}
 
    ngAfterViewInit() {
     
@@ -128,6 +131,10 @@ export class PayslipsummaryPage implements OnInit {
   //     }
   //   });
   // }
+
+  back(){
+    this.navCtrl.navigateBack('/pay-slip');
+  }
 
 
 }

@@ -14,23 +14,22 @@ const routes: Routes = [
  
   {
     path: 'employee',
-    children:[
-      {
-        path:"",
-        loadChildren: () => import('./EmployeeMangement/employee/employee.module').then( m => m.EmployeePageModule)
+    loadChildren: () => import('./EmployeeMangement/employee/employee.module').then( m => m.EmployeePageModule)
 
-      },
-      {
-        path: ':empId',
-        loadChildren: () => import('./EmployeeMangement/update-employee/update-employee.module').then( m => m.UpdateEmployeePageModule)
-      },
-
-    ]
     
+  },
+  {
+    path: 'update-employee-details/:id',
+    loadChildren: () => import('./EmployeeMangement/update-employee/update-employee.module').then( m => m.UpdateEmployeePageModule)
   },
   {
     path: 'leave',
     loadChildren: () => import('./LeaveMangementSystem/leave/leave.module').then( m => m.LeavePageModule)
+  },
+  {
+    path:'attendance',
+    loadChildren: () => import('./AttendanceMangement/attendance/attendance.module').then( m => m.AttendancePageModule)
+
   },
   {
 
@@ -71,30 +70,17 @@ const routes: Routes = [
     loadChildren: () => import('./EmployeeMangement/add-employee/add-employee.module').then( m => m.AddEmployeePageModule)
   },
   
-  {
-    path: 'add-attendance',
-    loadChildren: () => import('./AttendanceMangement/add-attendance/add-attendance.module').then( m => m.AddAttendancePageModule)
-  },
-  {
-    path: 'add-week',
-    loadChildren: () => import('./AttendanceMangement/add-week/add-week.module').then( m => m.AddWeekPageModule)
-  },
-  {
-    path: 'attendance-week',
-    children:[
-      {
-        path:'',
-        loadChildren: () => import('./AttendanceMangement/attendance-week/attendance-week.module').then( m => m.AttendanceWeekPageModule)
-      },
-     
-
-    ]
-    
-  },
+  
+  
   {
     path: 'attendId',
     loadChildren: () => import('./AttendanceMangement/attendance/attendance.module').then( m => m.AttendancePageModule)
   },
+  {
+    path: 'leave-details/:id',
+    loadChildren: () => import('./LeaveMangementSystem/leave-details/leave-details.module').then( m => m.LeaveDetailsPageModule)
+  },
+
   
 
   

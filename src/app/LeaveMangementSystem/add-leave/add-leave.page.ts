@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { leave } from 'src/app/model/leave.module';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LeaveService } from 'src/app/services/leave/leave.service';
+import { LoaderService } from 'src/app/services/loading/loader.service';
+import { ToastService } from 'src/app/services/toastMessage/toast.service';
 
 
 
@@ -20,20 +23,27 @@ export class AddLeavePage implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private leaveService: LeaveService, private router: Router) {
+  constructor(
+    private toastService: ToastService,
+    private fb: FormBuilder, 
+    private leaveService: LeaveService,
+    private router: Router,
+    private loading:LoaderService,
+    private navCtrl:NavController) {
     this.addLeaveForm = this.fb.group({
-      type: [''],
-      manager: [''],
-      reasons: [''],
-      startDate: [''],
-      endDate: [''],
-      noofDays: [''],
-      discription: ['']
+      type: ['',Validators.required],
+      manager: ['',Validators.required],
+      reasons: ['',Validators.required],
+      startDate: ['',Validators.required],
+      endDate: ['',Validators.required],
+      noofDays: ['',Validators.required],
+      discription: ['',Validators.required]
     })
   }
 
 
   submitleaveForm() {
+    this.loading.present();
 
     const type = this.addLeaveForm.get('type').value
     const manager = this.addLeaveForm.get('manager').value
@@ -44,18 +54,22 @@ export class AddLeavePage implements OnInit {
     const requestBody=`{empName:${type},mobileNumber:${manager}}`
     console.log(requestBody);
     const userDetails: leave = {
-      EMPID: this.empId,
-      LEAVETYPE: type,
-      STARTDATE: startDate,
-      ENDDATE: endDate,
-      ACTIONBY: manager,
-      ACTIONDATE: this.date,
-      NOOFDAYS: this.date,
-      DESCRIPTION: discription,
-      STATUS: "Pending",
-
+      id:parseInt(this.empId),
+      leaveType: type,
+      reason:reasons,
+      startDate: startDate,
+      endDate: endDate,
+      description: discription
     }
     console.log(userDetails);
+    
+    this.leaveService.leave(userDetails).subscribe((data:any)=>{
+      this.loading.dismiss();
+      this.toastService.presentToast("Leave Added");
+      this.router.navigate(['/home']);
+      
+      
+    });
     // this.leaveService.leave(formData).subscribe((data:any)=>{
     //   console.log("im in server",data)
     // });
@@ -68,6 +82,9 @@ export class AddLeavePage implements OnInit {
     console.log(this.date);
 
 
+  }
+  back(){
+    this.navCtrl.navigateBack('/leave');
   }
 
 }

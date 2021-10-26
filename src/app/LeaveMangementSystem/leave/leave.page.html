@@ -2,8 +2,14 @@
   <ion-toolbar >
     <ion-grid>
       <ion-row>
+        <ion-col size="2" style="margin-top: 10px;">
+          <ion-buttons (click)="back()">
+            <ion-icon name="chevron-back-circle" style="font-size: 30px;"></ion-icon>
+            
+          </ion-buttons>      
+        </ion-col>
         <ion-col>
-          <img src="../../../assets/loginLogo.png" style="height: 50px;margin-left: 80px;">
+          <img src="../../../assets/loginLogo.png" style="height: 50px;">
         </ion-col>
         <ion-col style="margin-top: 13px;font-size: larger;font-weight: 700;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" size="5">
           <h1 class="ion-no-margin">Leave Record</h1>
@@ -24,6 +30,7 @@
 <ion-content>
   
   
+  
   <div *ngIf="userTypeId == 1">
     <h1 class="title" style=" font-weight: 400;font-size: medium; margin-left: 20px;" >Leave</h1>
   </div>
@@ -32,28 +39,36 @@
   </div> -->
   <!-- <h1 class="title" style=" font-weight: 400;font-size: medium; margin-left: 20px;" >Leave Request</h1> -->
   
-  <ion-card *ngFor="let leave of leaves" [routerLink]="['./',leave.id]">
+  <ion-card *ngFor="let leave of leaves" [routerLink]="['/leave-details/', leave.id]">
     <ion-list>
       <ion-grid>
         <ion-row>
           <ion-col style="font-weight: 700;font-size: large;" class="ion-align-self-start">
-            Fever
+            Reason: {{leave.reason}}
           </ion-col>
           <ion-col style="text-align: end;color: orangered;" >
-            pending
+            {{leave.leaveType}}
           </ion-col>
           
         </ion-row>
         <ion-col style="color: darkgrey;">
-          20 Aug 2021
+          <ion-row>
+            <ion-col  class="ion-align-self-start">
+              Start Date: {{leave.startDate |date}}
+            </ion-col>
+            <ion-col  >
+              End Date: {{leave.endDate |date}}
+            </ion-col>
+            
+          </ion-row>
         </ion-col>
-        <ion-row>
-          <ion-col style="font-weight:bold; margin: 22px;" *ngIf="userTypeId == 1">
+        <!-- <ion-row> -->
+          <!-- <ion-col style="font-weight:bold; margin: 22px;" *ngIf="userTypeId == 1">
             sapan kumar
           </ion-col>
           <ion-col style="font-weight:bold; margin: 22px;" *ngIf="userTypeId == 2">
             chandra gupt sharma
-          </ion-col>
+          </ion-col> -->
           
 
           <!---UserType 1-->
@@ -82,8 +97,11 @@
 
           <!-- <h6>{{status}}</h6> -->
           
-        </ion-row>
+        <!-- </ion-row> -->
       </ion-grid>
+      <div style="margin-left: 20px;">
+        <p>Description: {{leave.description}}</p>
+      </div>
     </ion-list>    
   </ion-card>
   <!-- <ion-card routerLink="/payslipe" style="padding:10px; text-align: center;">

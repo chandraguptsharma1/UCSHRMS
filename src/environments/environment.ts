@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl:'http://49.50.69.37:8080/HRMSServices/'
+  baseUrl:'http://49.50.69.37:8089/HRMSServices/'
 };
 
 

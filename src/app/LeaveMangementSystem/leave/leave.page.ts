@@ -1,5 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { leave } from 'src/app/model/leave.module';
 import { LeaveService } from 'src/app/services/leave/leave.service';
 
@@ -14,13 +15,18 @@ export class LeavePage implements OnInit {
   userType : string;
   userTypeId: number;
   leaves:any=[];
-
+  startdate:any;
   status:any;
   
 
  
 
-  constructor(private leaveService:LeaveService,public alertController: AlertController) { }
+  constructor(
+    private leaveService:LeaveService,
+    public datepipe: DatePipe,
+    public alertController: AlertController,
+    private navCtrl:NavController
+    ) { }
 
   ngOnInit() {
     // this.leaves = this.leaveService.getLeave();
@@ -54,10 +60,17 @@ export class LeavePage implements OnInit {
     await alert.present();
   }
 
+  back(){
+    this.navCtrl.navigateBack('/home');
+  }
+
    ionViewDidEnter() {
     this.leaveService.getleave().subscribe((response) => {
       this.leaves = response;
+      this.startdate = this.leaves.startDate
+      // this.startdate = this.datepipe.transform(this.leaves.startDate, 'dd/MM/yyyy')
       console.log(this.leaves)
+      console.log(this.startdate)
     })
   }
 

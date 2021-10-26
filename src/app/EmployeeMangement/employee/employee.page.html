@@ -12,8 +12,14 @@
     <ion-toolbar >
       <ion-grid>
         <ion-row>
+          <ion-col size="2" style="margin-top: 10px;">
+            <ion-buttons (click)="back()">
+              <ion-icon name="chevron-back-circle" style="font-size: 30px;"></ion-icon>
+              
+            </ion-buttons>      
+          </ion-col>
           <ion-col>
-            <img src="../../../assets/loginLogo.png" style="height: 50px;margin-left: 80px;">
+            <img src="../../../assets/loginLogo.png" style="height: 50px;">
           </ion-col>
           <ion-col style="margin-top: 13px;font-size: larger;font-weight: 700;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" size="5">
             <h4 class="ion-no-margin">Employee Record</h4>
@@ -31,27 +37,23 @@
   </ion-toolbar>
   </ion-header>
 
- <ion-content>
-  <app-breadcrumbs></app-breadcrumbs>
-
-  <ion-card *ngFor="let emp of employees" style="background-color: rgb(218, 245, 218);" [routerLink]="['./',emp.id]">
-    <ion-grid>
-    <ion-row>
-      <ion-col style="background-color: darkcyan; text-align: center;">
-          <img src="{{emp.images}}" style="margin-top:30%;">
-      </ion-col>
-       <ion-col style="align-self: flex-end">
-          <p>{{emp.EmpName}}</p>
-          <p>{{emp.EmpAddress}}</p>
-          <p>{{emp.MobNo}}</p>
-          <p>{{emp.JoinDate}}</p>
-      </ion-col>
-      <ion-col style="text-align: end;">
-          <!-- <ion-icon name="trash-outline" style="font-size: xx-large;margin-top: 40px;"></ion-icon> -->
-          <ion-button>Active</ion-button>
-          <ion-button color="success">Inactive</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  </ion-card>
-</ion-content>
+  <ion-content>
+    <ion-card *ngFor="let item of employees" style="background-color: rgb(218, 245, 218);" [routerLink]="['/update-employee-details/', item.id]">
+      <ion-grid>
+      <ion-row>
+        <ion-col style="background-color: darkcyan; text-align: center;" size="4">
+            <img src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png" style="height: 80px;">
+        </ion-col>
+         <ion-col  size="4">
+            <p>{{item.empName}}</p>
+            <p>{{item.mobileNumber}}</p>
+            <p>{{item.department}}</p>
+            <p>{{item.designation}}</p>
+        </ion-col>
+        <ion-col style="text-align: end;">
+            <ion-toggle color="success"></ion-toggle>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </ion-card>
+  </ion-content>

@@ -32,7 +32,10 @@ export class PaySlipPage implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['upload-payslip']);
+    this.router.navigate(['/home']);
+  }
+  back(){
+    this.navCtrl.navigateBack('/home');
   }
 
 

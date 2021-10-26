@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user.module';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LoaderService } from 'src/app/services/loading/loader.service';
 import { ToastService } from 'src/app/services/toastMessage/toast.service';
 
 @Component({
@@ -16,7 +17,12 @@ export class LoginPage implements OnInit {
 
   loginForm:FormGroup;
 
-  constructor(private toastService: ToastService,private fb : FormBuilder,private authService:AuthService,private router:Router) {
+  constructor(
+    private toastService: ToastService,
+    private fb : FormBuilder,
+    private authService:AuthService,
+    private router:Router,
+    private loading:LoaderService ) {
     this.loginForm = this.fb.group({
       empId:['',Validators.required],
       password:['',Validators.required]
@@ -27,6 +33,7 @@ export class LoginPage implements OnInit {
   }
 
   submitLoginForm(){
+    this.loading.present();
     const empId = this.loginForm.get('empId').value
     const password = this.loginForm.get('password').value
     const requestBody= `{empId:${empId},password:${password}}`
@@ -45,11 +52,13 @@ export class LoginPage implements OnInit {
         localStorage.setItem('empId',data.resEmpId);
         this.toastService.presentToast('Welcome '+data.resName);
         this.router.navigate(['/home']);
+        this.loading.dismiss();
 
 
-      }else{
+      }else if(data.resCode == 201){
         this.toastService.presentToast('Either EmpId Or Password Wrong.');
         this.router.navigate(['/login']);
+        this.loading.dismiss();
 
       }
     });

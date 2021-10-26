@@ -1,9 +1,12 @@
 <ion-header  >
   <ion-toolbar  >
     <ion-toolbar color="primary">
-      <ion-buttons slot="start" >
-        <ion-back-button  (click)="goBack()" ></ion-back-button>
-      </ion-buttons>
+      
+        <ion-buttons (click)="back()">
+          <ion-icon name="chevron-back-circle" style="font-size: 30px;"></ion-icon>
+          
+        </ion-buttons>      
+      
       <ion-buttons slot="end" routerLink="/add-pay-slip">
        <ion-button>
         <ion-icon   size="large" slot="end" width="100%"name="add"></ion-icon>

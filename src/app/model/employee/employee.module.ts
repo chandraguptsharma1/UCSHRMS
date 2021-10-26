@@ -1,4 +1,5 @@
-export interface employee {
+export interface employee{
+
     "empId": string,
     "empName": string,
     "password": string,
@@ -11,5 +12,6 @@ export interface employee {
     "adharNo": string,
     "status": string,
     "email":string
+
 
 }
