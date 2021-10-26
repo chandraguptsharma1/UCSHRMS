@@ -16,8 +16,8 @@ export class AttendancePage implements OnInit {
   }
 
   attendance(){
-    const from = new Date("2020-07-27T08:08:20.794Z");
-    const to = new Date("2020-09-24T08:08:20.794Z");
+    const from = new Date("2021-07-27T08:08:20.794Z");
+    const to = new Date("2021-09-24T08:08:20.794Z");
     const buildDateString = (date) => {
       const day = date.getDate().toString().padStart(2, "0");
       const month = (date.getMonth() + 1).toString().padStart(2, "0");

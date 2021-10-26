@@ -79,7 +79,11 @@ const routes: Routes = [
   {
     path: 'leave-details/:id',
     loadChildren: () => import('./LeaveMangementSystem/leave-details/leave-details.module').then( m => m.LeaveDetailsPageModule)
+  },  {
+    path: 'my-feed',
+    loadChildren: () => import('./Anniversery/my-feed/my-feed.module').then( m => m.MyFeedPageModule)
   },
+
 
   
 

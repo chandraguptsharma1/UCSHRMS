@@ -1,0 +1,17 @@
+.cardImage{
+    background-image: url("https://envato-shoebox-0.imgix.net/5387/c66d-077a-4231-a762-0177057138ef/DSC_8975.jpg?auto=compress%2Cformat&fit=max&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark2.png&markalign=center%2Cmiddle&markalpha=18&w=1600&s=64557ebea94a40cca8d6b5b1da4d4a97");
+    background-size: cover;
+    text-align: center;
+    ion-avatar{
+        padding: 10px;
+        text-align: center;
+        margin:0 auto;
+        width:90px !important;  
+        height :90px !important;
+    }
+    h5{
+        font-size:30px;
+        font-family: 'Times New Roman', Times, serif;
+        color: rgb(236, 240, 243);
+    }
+}
