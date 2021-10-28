@@ -10,9 +10,9 @@ export class AproveOrRejectService {
   private Api_url = environment.baseUrl
   constructor(private http:HttpClient) { }
 
-  // approveRequest(approveOrReject:ApproveOrReject){
-  //   const headers= new HttpHeaders()
-  // .set('content-type', 'application/json')
-  //   return this.http.get<ApproveOrReject>(`${this.Api_url}addemployees`,approveOrReject);
-  // }
+  approveRequest(approveOrReject:ApproveOrReject){
+    const headers= new HttpHeaders()
+  .set('content-type', 'application/json')
+    return this.http.post<ApproveOrReject>(`${this.Api_url}cancelrequest`,approveOrReject,{ 'headers': headers });
+  }
 }

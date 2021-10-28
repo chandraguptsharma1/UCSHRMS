@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import * as moment from 'moment';
+import { WeekAndDayRangeService } from 'src/app/services/weekAndDay/week-and-day-range.service';
+
 
 @Component({
   selector: 'app-attendance',
@@ -8,11 +11,17 @@ import { NavController } from '@ionic/angular';
 })
 export class AttendancePage implements OnInit {
   date:any;
+  dateRange:any;
+  yourDateStart:any;
+  dateall:any;
+  Weekdays:any;
+  
 
-  constructor(private navCtrl:NavController) { }
+  constructor(private navCtrl:NavController,private sharedS:WeekAndDayRangeService) { }
 
   ngOnInit() {
     this.attendance();
+    // this.all();
   }
 
   attendance(){
@@ -46,6 +55,10 @@ export class AttendancePage implements OnInit {
     const weeks = buildWeeks(from, to);
 
     weeks.forEach(([start, end]) => {
+      const dates = this.sharedS.getDateRange(start,end);
+    const weeksGrouped = this.sharedS.getWeeksMapped(dates);
+    // console.log(weeksGrouped);
+    console.log(dates);
       this.date = weeks
     });
     console.log(this.date);
@@ -55,5 +68,50 @@ export class AttendancePage implements OnInit {
   back(){
     this.navCtrl.navigateBack('/home');
   }
+
+  // all(){
+  //   let dateString = '2021-11-16T00:00:00' 
+  //   let newDate = new Date(dateString);
+  //   let dateString1 = '2022-11-16T00:00:00' 
+  //   let newDate1 = new Date(dateString);
+  //   let startDate = moment('2018-05-01');
+  //   let endDate = moment('2018-05-15');
+  //   const dates = this.sharedS.getDateRange(newDate,newDate1);
+  //   const weeksGrouped = this.sharedS.getWeeksMapped(dates);
+  //   console.log(weeksGrouped);
+  //   console.log(dates);
+  // }
+
+  customAlertOptions: any = {
+    header: 'Pizza Toppings',
+    subHeader: 'Select your toppings',
+    message: '$1.00 per topping',
+    translucent: true
+  };
+
+  customPopoverOptions: any = {
+    header: 'Hair Color',
+    subHeader: 'Select your hair color',
+    message: 'Only select your dominant hair color'
+  };
+
+  customActionSheetOptions: any = {
+    header: 'Weeks',
+    subHeader: 'Select your Week Range'
+  };
+  
+  getValue(){
+    let days=null;
+    console.log(this.dateRange);
+    this.dateall = this.dateRange.split(',');
+    console.log(this.dateall[0]);
+    const dates = this.sharedS.getDateRange(this.dateall[0],this.dateall[1]);
+    const weeksGrouped = this.sharedS.getWeeksMapped(dates);
+    days = dates;
+    console.log(weeksGrouped);
+    this.Weekdays=dates;
+    console.log(this.Weekdays)
+  }
+
 
 }

@@ -32,19 +32,48 @@
         <ion-select-option *ngFor="let dates of date" [value]="dates">{{dates}}</ion-select-option>
       </ion-select>
     </div> -->
-    <div style="padding: 10px;">
+    <!-- <div style="padding: 10px;">
       <ion-select placeholder="Select Date">
         <ion-select-option *ngFor="let dates of date" [value]="date">{{dates}}</ion-select-option>       
       </ion-select>
-    </div>
+    </div> -->
+
+    <!-- <ion-row>
+      
+      <ion-col size="2">
+        <ion-button fill="clear" >
+          <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+   
+      <ion-col size="8" class="ion-text-center">
+        <h2>{{ date }}</h2>
+      </ion-col>
+   
+      
+      <ion-col size="2">
+        <ion-button fill="clear" >
+          <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-item>
+      
+      <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One"
+      [(ngModel)]="dateRange"  (ionChange)="getValue()">
+        <ion-select-option  *ngFor="let dates of date"   >{{dates}}</ion-select-option>
+        
+      </ion-select>
+    </ion-item>
     
  
 </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card style="padding: 15px;">
-    <ion-item>
+  <!-- <ion-card style="padding: 15px;" > -->
+    <!-- <ion-item>
       <ion-grid>
         <ion-row>
           <ion-col >
@@ -146,7 +175,13 @@
       </ion-grid>
     </ion-item>
     
+  </ion-card> -->
+
+  <ion-card *ngFor="let day of Weekdays">
+    <h5>{{day | date}}</h5>
   </ion-card>
+
+ 
  
 
 </ion-content>
