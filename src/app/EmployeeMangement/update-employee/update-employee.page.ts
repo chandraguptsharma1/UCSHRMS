@@ -3,7 +3,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
-
+// import {FileChooser} from "@ionic-native/file-chooser/ngx";
+// import {FilePath} from "@ionic-native/file-path/ngx";
+// import { Plugins } from '@capacitor/core';
+// const {Filesystem} = Plugins;
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-update-employee',
@@ -16,12 +21,15 @@ export class UpdateEmployeePage implements OnInit {
   empId:any;
   id:any;
   employees:any=[];
+  base64String:any="";
 
   constructor(private router:Router,
     private fb : FormBuilder,
     private employeeService:EmployeeService,
     private activatedRoute:ActivatedRoute,
-    private navCtrl:NavController) {
+    private navCtrl:NavController,
+   
+    ) {
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(this.id);
@@ -125,6 +133,33 @@ export class UpdateEmployeePage implements OnInit {
   }
   back(){
     this.navCtrl.navigateBack('/employee');
+  }
+
+  // pickFile(){
+  //   this.fileChooser.open().then((val)=>{
+  //     this.filePath.resolveNativePath(val).then((path)=>{
+  //       Filesystem.readFile({
+  //         path:path
+  //       }).then((base64)=>{
+  //         this.base64String = "data:image/png;base64,"+base64.data;
+  //       })
+  //     })
+  //   })
+  // }
+
+  takeFile(){
+    const options = {
+      resultType: CameraResultType.Uri,
+    };
+    Camera.getPhoto(options).then(
+      (photo) => {
+        console.log(photo);
+        this.base64String = photo;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
 }

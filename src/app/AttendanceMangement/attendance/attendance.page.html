@@ -58,20 +58,42 @@
       </ion-col>
     </ion-row> -->
 
-    <ion-item>
+    <!-- <ion-item>
       
       <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One"
-      [(ngModel)]="dateRange"  (ionChange)="getValue()">
-        <ion-select-option  *ngFor="let dates of date"   >{{dates}}</ion-select-option>
+      [(ngModel)]="dateRange"  (ionChange)="getValue()" *ngFor="let saturday of saturdayAll">
+        <ion-select-option>{{saturday}}</ion-select-option>
+        
+      </ion-select>
+    </ion-item> -->
+
+    
+    <ion-item>
+      <ion-label>Select the Week</ion-label>
+      <ion-select placeholder="Select One" [(ngModel)]="dateRange" (ionChange)="getValue()" >
+        <ion-select-option *ngFor="let saturday of saturdayAll" [value]="saturday">{{saturday | date: 'dd/MM/yyyy'}}</ion-select-option>
         
       </ion-select>
     </ion-item>
-    
  
 </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  
+ 
+  <ion-list>
+    <ion-card>
+      <ion-item *ngFor="let data of allday">
+        
+        <ion-label>{{data |date:'EE, d'}}</ion-label>
+        <ion-button routerLink="">Add</ion-button>
+      </ion-item>
+    </ion-card> 
+  </ion-list>
+  <!-- <ion-card >
+    <ion-label>{{saturdayAll|date}}</ion-label>
+  </ion-card> -->
   <!-- <ion-card style="padding: 15px;" > -->
     <!-- <ion-item>
       <ion-grid>
@@ -177,9 +199,9 @@
     
   </ion-card> -->
 
-  <ion-card *ngFor="let day of Weekdays">
+  <!-- <ion-card *ngFor="let day of Weekdays">
     <h5>{{day | date}}</h5>
-  </ion-card>
+  </ion-card> -->
 
  
  

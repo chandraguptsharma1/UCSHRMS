@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { AnniversaryService } from 'src/app/services/anniversary/anniversary.service';
 
 @Component({
   selector: 'app-my-feed',
@@ -8,7 +9,10 @@ import { NavController } from '@ionic/angular';
 })
 export class MyFeedPage implements OnInit {
 
-  constructor(private navCtrl:NavController) { }
+  aniversary:any=[];
+
+  constructor(private navCtrl:NavController,
+    private annivarsary:AnniversaryService) { }
 
   ngOnInit() {
   }
@@ -16,5 +20,15 @@ export class MyFeedPage implements OnInit {
   back(){
     this.navCtrl.navigateBack('/home');
   }
+
+  ionViewDidEnter() {
+    this.annivarsary.getAnniversary().subscribe((response) => {
+
+      this.aniversary = response;
+      console.log(this.aniversary)
+    })
+  }
+
+
 
 }

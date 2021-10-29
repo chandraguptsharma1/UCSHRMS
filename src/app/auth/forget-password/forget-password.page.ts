@@ -36,8 +36,8 @@ export class ForgetPasswordPage implements OnInit {
     this.forgetpassword.forgetPassword(forgetPasswordDetail).subscribe((data:any)=>{
       if(data.resCode==200){
         this.toastService.presentToast("Check Your Password to this mail: "+email);
-        this.router.navigate(['/login']);
         this.loading.dismiss();
+        this.router.navigate(['/login']);
 
       }else if(data.resCode==201){
         this.toastService.presentToast(" Mail Id Is Not Present: ");

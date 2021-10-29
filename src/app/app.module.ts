@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { DatePipe } from '@angular/common';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,6 +21,7 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),

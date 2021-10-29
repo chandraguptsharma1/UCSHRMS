@@ -78,4 +78,12 @@
     </div>
   </ion-card>
 </form>
+
+<ion-card>
+  <ion-button (click)="takeFile()">Pick Image</ion-button>
+ <br>
+ <img *ngIf="base64String" [src]="base64String">
+
+</ion-card>
+
 </ion-content>

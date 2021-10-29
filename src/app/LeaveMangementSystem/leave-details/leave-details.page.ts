@@ -75,4 +75,16 @@ export class LeaveDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  isStatusReject(){
+    if (this.leaveDetails.status=='reject') return true ;
+    else if(this.leaveDetails.status=='approve') return true;
+                     return false ;
+  }
+
+  isStatusApprove(){
+    if (this.leaveDetails.status=='approve') return true ;
+    if (this.leaveDetails.status=='reject') return true ;
+                     return false ;
+  }
+
 }

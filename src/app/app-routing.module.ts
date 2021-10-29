@@ -83,6 +83,10 @@ const routes: Routes = [
     path: 'my-feed',
     loadChildren: () => import('./Anniversery/my-feed/my-feed.module').then( m => m.MyFeedPageModule)
   },
+  {
+    path: 'add-day-attendance',
+    loadChildren: () => import('./AttendanceMangement/add-day-attendance/add-day-attendance.module').then( m => m.AddDayAttendancePageModule)
+  },
 
 
   

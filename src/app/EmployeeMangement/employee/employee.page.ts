@@ -39,6 +39,7 @@ export class EmployeePage implements OnInit {
     // })
   }
   ionViewDidEnter() {
+    
     this.employeeService.GetEmployeeDetail(this.empId).subscribe((response) => {
       this.employees = response;
       console.log(this.employees)

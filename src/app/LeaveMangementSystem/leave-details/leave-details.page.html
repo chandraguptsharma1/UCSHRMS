@@ -107,11 +107,11 @@
 
       <ion-grid style="text-align: center;margin-top: 20px;">
         <ion-row>
-          <ion-col>
-            <ion-button (click)="approve()">Approve </ion-button>
+          <ion-col >
+            <ion-button (click)="approve()" [disabled]="isStatusReject()">Approve </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button (click)="reject()">Reject </ion-button>
+            <ion-button (click)="reject()" [disabled]="isStatusApprove()">Reject </ion-button>
           </ion-col>
 
         </ion-row>
