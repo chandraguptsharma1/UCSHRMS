@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
-// import {FileChooser} from "@ionic-native/file-chooser/ngx";
-// import {FilePath} from "@ionic-native/file-path/ngx";
-// import { Plugins } from '@capacitor/core';
-// const {Filesystem} = Plugins;
+// import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+// import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera, CameraResultType,CameraSource,Photo } from '@capacitor/camera';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { ApiImage } from 'src/app/model/employeeDocument/employeeDocument.module';
+import { updateemployee } from 'src/app/model/employee/updateEmployee.module';
+import { ToastService } from 'src/app/services/toastMessage/toast.service';
+import { LoaderService } from 'src/app/services/loading/loader.service';
+//import { Console } from 'console';
+// import { MultiFileUploadComponent } from '../components/multi-file-upload/multi-file-upload.component';
+const IMAGE_DIR = 'stored-images';
 
 @Component({
   selector: 'app-update-employee',
@@ -21,109 +28,89 @@ export class UpdateEmployeePage implements OnInit {
   empId:any;
   id:any;
   employees:any=[];
-  base64String:any="";
+  fileField:any;
+  imageElement:any;
+  fileName = '';
+  imagefile:File;
+  uploadProgress:number;
+  uploadSub: Subscription;
+  document:any;
+  documentType: string;
+  // @ViewChild(MultiFileUploadComponent) fileField: MultiFileUploadComponent;
 
   constructor(private router:Router,
     private fb : FormBuilder,
     private employeeService:EmployeeService,
     private activatedRoute:ActivatedRoute,
     private navCtrl:NavController,
-   
-    ) {
+    private http: HttpClient,
+    private toastService: ToastService,
+    private loading:LoaderService,) {
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(this.id);
 
     //this.router.snapshot.params["id"];
     this.updateEmployee = this.fb.group({
-      empName:[''],
-      email:[''],
-      password:[''],
-    //  mobileNumber:[''],
-      department:[''],
-      joindate:[''],
-      addhar:[''],
-      pancard:[''],
-      document:[''],
-      role:[''],
-      status:[''],
-      designation: ['']
+    empName:[''],
+    email:[''],
+    password:[''],
+    mobileNumber:[''],
+    document:[''],
+    // gender:[''],
+    department:[''],
+    city:[''],
+    state:[''],
+    country:[''],
+    pincode:[''],
+    doj:[''],
+    panNo:[''],
+    adharNo:[''],
+    role:[''],
+    status:[''],
+    designation: [''],
+    dob:[''],
+    bloodGroup:['']
       })
   }
 
   ngOnInit() {
     this.empId="104";
-    this.fetchemployee(this.id);
+    //this.fetchemployee(this.id);
     //this.updateeemployeeForm(this.id);
     
   }
 
-  fetchemployee(id){
-    this.employeeService.getEmployeeId(id).subscribe((data) => {
-      this.updateEmployee.setValue({
-        empName:data['empName'],
-        email:data['email'],
-        password:data['password'],       
-        department:data['department'],
-        joindate:data['joindate'],
-        addhar:data['addhar'],
-        pancard:data['pancard'],
-        document:data['document'],
-        role:data['role'],
-        status:data['status'],
-        designation: data['designation']     
-      });
-    });
-  }
+  // fetchemployee(id){
+  //   this.employeeService.getEmployeeId(id).subscribe((data) => {
+  //     this.updateEmployee.setValue({
+  //       empName:data['empName'],
+  //       email:data['email'],
+  //       password:data['password'],       
+  //       department:data['department'],
+  //       joindate:data['joindate'],
+  //       addhar:data['addhar'],
+  //       pancard:data['pancard'],
+  //       document:data['document'],
+  //       role:data['role'],
+  //       status:data['status'],
+  //       designation: data['designation'],
+  //       mobileNumber: data['mobileNumber'],
+  //       //gender:data['gender']
+  //     });
+  //   });
+  // }
 
-  updateEmployeeForm(){
-    // const empName = this.updateEmployee.get('empName').value
-    // const email = this.updateEmployee.get('email').value
-    // const password = this.updateEmployee.get('password').value
-    // const department = this.updateEmployee.get('department').value
-    // const joindate = this.updateEmployee.get('joindate').value
-    // const addhar = this.updateEmployee.get('addhar').value
-    // const pancard = this.updateEmployee.get('pancard').value
-    // const dob = this.updateEmployee.get('dob').value
-    // //const document = this.updateEmployee.get('document').value
-    // const role = this.updateEmployee.get('role').value
-    // const status = this.updateEmployee.get('status').value
-    // const designation = this.updateEmployee.get('designation').value
-    // //const requestBody= `{empName:${dob},mobileNumber:${mobileNumber}}`
-    // const requestBody= `{empName:${empName}}`
-    // console.log(requestBody);
+  // updateEmployeeForm(){
+  
+  //   this.employeeService.updateEmployeeDetail(this.id, this.updateEmployee.value)
+  //       .subscribe(() => {
+  //         this.updateEmployee.reset();
+  //         this.router.navigate(['/home']);
+  //       })
 
-    // const updateemployeeDetails:updateemployee = {
-    //   empName:empName,
-    //  empId:this.empId,
-    //   email:email,
-    //   dob:dob,
-    //   department:department,
-    //   adharNo:addhar,
-    //   designation:designation,
-    //   doj:joindate,
-    //   panNo:pancard,
-    //   password:password,
-    //   role:role,
-    //   status:status,
-    // }
-    // console.log(updateemployeeDetails)
-    this.employeeService.updateEmployeeDetail(this.id, this.updateEmployee.value)
-        .subscribe(() => {
-          this.updateEmployee.reset();
-          this.router.navigate(['/home']);
-        })
-
-    // this.employeeService.updateEmployeeDetail(updateemployeeDetails).subscribe((data:any)=>{
-
-    //   console.log("im in server",data)
-    //   if(data.resCode = 200){
-    //     //redirect dashboardpage
-    //   }else{
-    //     console.log("server not working")
-    //   }
-    // });
-  }
+    
+  // }
 
   ionViewDidEnter() {
     this.employeeService.getEmployeeId(this.id).subscribe((response) => {
@@ -135,35 +122,169 @@ export class UpdateEmployeePage implements OnInit {
     this.navCtrl.navigateBack('/employee');
   }
 
-  // pickFile(){
-  //   this.fileChooser.open().then((val)=>{
-  //     this.filePath.resolveNativePath(val).then((path)=>{
-  //       Filesystem.readFile({
-  //         path:path
-  //       }).then((base64)=>{
-  //         this.base64String = "data:image/png;base64,"+base64.data;
-  //       })
-  //     })
-  //   })
+//  async getImage(){
+//    const image= await Camera.getPhoto({
+//      quality:90,
+//      allowEditing:false,
+//      resultType:CameraResultType.Base64,
+//      source:CameraSource.Photos
+//    });
+//    console.log(image);
+
+//    if(image){
+//      this.saveImage(image);
+//    }
+
+//   }
+
+//   async saveImage(photo:Photo){
+//    const base64Data = '';
+//     const fileName = new Date().getTime()+'.jpeg';
+//     const saveFile =  await Filesystem.writeFile({
+//       directory:Directory.Data,
+//       path:`${IMAGE_DIR}/${fileName}`,
+//       data:base64Data
+//     })
+
+//   }
+
+  // takeFile(){
+  //   const options = {
+  //     resultType: CameraResultType.Uri,
+  //   };
+  //   Camera.getPhoto(options).then(
+  //     (photo) => {
+  //       console.log(photo);
+  //       this.base64String = photo;
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //     }
+  //   );
   // }
 
-  takeFile(){
-    const options = {
-      resultType: CameraResultType.Uri,
-    };
-    Camera.getPhoto(options).then(
-      (photo) => {
-        console.log(photo);
-        this.base64String = photo;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
+  onFileSelected(event) {
+    // var documentType="pancard";
+
+    // var empId ="UCS102";
+    
+
+    const file:File = event.target.files[0];
+
+    if (file) {
+
+        this.fileName = file.name;
+        console.log(file)
+        this.imagefile=file
+
+        
+        //  const upload$ = this.http.post("http://49.50.69.37:8089/HRMSServices/uploadDocuments", formData).subscribe
+        //  ((data)=>{
+        //        console.log(data)
+        //  })
+        // {
+        //   reportProgress: true,
+        //         observe: 'events'
+        //     })
+        //     this.uploadSub = upload$.subscribe(event => {
+        //       if (event.type == HttpEventType.UploadProgress) {
+        //         this.uploadProgress = Math.round(100 * (event.loaded / event.total));
+        //       }
+        //     })
+       // }       
+   // }
+
+  //  const items = event.dataTransfer.items;
+  //  for (let i = 0; i < items.length; i++) {
+  //     const item = items[i];
+  //     if (item.kind === 'file') {
+  //        const entry = item.webkitGetAsEntry();
+  //        if (entry.isFile) {
+  //          //console.log('empty')
+  //        } else if (entry.isDirectory) {
+  //         //console.log(entry.isDirectory)
+  //        }
+  //     }
+    }
 
 }
+uploadDoc(){
+  // const formData:ApiImage ={
+  //   document:this.file,
+  //   documentType:this.documentType,
+  //   empId:this.empId           
+  // }
+  let myformData=new FormData();
+  myformData.append('document',this.imagefile);
+  myformData.append('documentType',this.documentType);
+  myformData.append('empId',this.employees.empId);
+    this.http.post("http://49.50.69.37:8089/HRMSServices/uploadDocuments", myformData).subscribe((response)=>{
+      console.log(JSON.stringify(["response",response]))
+    
+    });
+    }
 
 
-
-
+    updateEmployeeForm(){
+    //const empId = this.updateEmployee.get('empId').value
+    const empName = this.updateEmployee.get('empName').value
+    const email = this.updateEmployee.get('email').value
+    const password = this.updateEmployee.get('password').value
+    const mobileNumber = this.updateEmployee.get('mobileNumber').value
+    const department = this.updateEmployee.get('department').value
+    const city = this.updateEmployee.get('city').value
+    const state = this.updateEmployee.get('state').value
+    const pincode = this.updateEmployee.get('pincode').value
+    const adharNo = this.updateEmployee.get('adharNo').value
+    const panNo = this.updateEmployee.get('panNo').value
+    const bloodGroup = this.updateEmployee.get('bloodGroup').value
+    const role = this.updateEmployee.get('role').value
+    const status = this.updateEmployee.get('status').value
+    const designation = this.updateEmployee.get('designation').value
+    const dob = this.updateEmployee.get('dob').value
+    const doj = this.updateEmployee.get('doj').value
+    const country = this.updateEmployee.get('country').value
+    // const requestBody= `{empName:${dob},mobileNumber:${mobileNumber}}`
+    // console.log(requestBody);
+      const updateDetails:updateemployee={
+        id:this.id,
+        empId:this.empId,
+        empName:empName,
+        email:email,
+        adharNo:adharNo,
+        bloodGroup:bloodGroup,
+        city:city,
+        country:country,
+        department:department,
+        designation:designation,
+        dob:dob,
+        doj:doj,
+        mobileNumber:mobileNumber,
+        panNo:panNo,
+        password:password,
+        pincode:pincode,
+        role:role,
+        state:state,
+        status:status,        
+      }
+      console.log(updateDetails)
+      this.employeeService.updateEmployeeDetail(updateDetails).subscribe((data:any)=>{
+        this.toastService.presentToast('Employee Added');
+        //this.router.navigate(['/home']);
+        this.loading.dismiss();
+        console.log("im in server",data)
+        if(data.resCode = 200){
+          //redirect dashboardpage
+          this.loading.dismiss();
+        }else{
+          console.log("server not working");
+          this.loading.dismiss();
+        }
+      });
+      console.log("server not enter")
+  
+     // http://49.50.69.37:8089/HRMSServices/updateEmployees
+    }
+  
+}
+//}

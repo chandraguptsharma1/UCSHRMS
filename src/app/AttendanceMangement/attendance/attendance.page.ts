@@ -1,8 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter  } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import * as moment from 'moment';
 import { WeekAndDayRangeService } from 'src/app/services/weekAndDay/week-and-day-range.service';
+
 
 
 @Component({
@@ -11,6 +12,14 @@ import { WeekAndDayRangeService } from 'src/app/services/weekAndDay/week-and-day
   styleUrls: ['./attendance.page.scss'],
 })
 export class AttendancePage implements OnInit {
+
+  message: string = "Hola Mundo!"
+
+  @Output() messageEvent = new EventEmitter<string>();
+
+  sendMessage() {
+    this.messageEvent.emit(this.message)
+  }
   date:any;
   dateRange:any;
   yourDateStart:any;
@@ -29,7 +38,9 @@ export class AttendancePage implements OnInit {
     this.saturdayAll = st
     // this.all();
     
-    this.dateRange = '30/10/2021'
+    // this.dateRange = '30/10/2021'
+    
+    
   }
 
   attendance(){
@@ -120,6 +131,13 @@ export class AttendancePage implements OnInit {
       return d
   })
     console.log('start date',this.allday.reverse())
+    var start = new Date(this.dateRange);
+    var end = new Date(start.setFullYear(start.getDate()-5));
+    // start.setDate(start.getDate()-5);
+    // var end = new Date(start.setDate(d.getDate()+(6 - this.dateRange)));
+    console.log(start);
+    console.log(end);
+    
   
     // let days=null;
     // console.log(this.dateRange);
@@ -154,6 +172,10 @@ export class AttendancePage implements OnInit {
       
     }
     console.log(A);
+  }
+
+  addPage(){
+
   }
 
 

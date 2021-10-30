@@ -10,6 +10,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class EmployeeService {
+  UploadDetail(id: any, value: any) {
+    throw new Error('Method not implemented.');
+  }
   private Api_url = environment.baseUrl
   constructor(private http:HttpClient) { }
 
@@ -18,10 +21,11 @@ export class EmployeeService {
   .set('content-type', 'application/json')
     return this.http.post<employee>(`${this.Api_url}addemployees`,employeeDetails,{ 'headers': headers });
   }
-  updateEmployeeDetail(id,updateEmployeeDetails:updateemployee){
+  updateEmployeeDetail(updateEmployeeDetails:updateemployee){
     const headers= new HttpHeaders()
   .set('content-type', 'application/json')
-    return this.http.put<updateemployee>(`${this.Api_url}updateEmployees`+ '/' + id,updateEmployeeDetails,{ 'headers': headers });
+    return this.http.put<updateemployee>(`${this.Api_url}updateEmployees`,updateEmployeeDetails,{ 'headers': headers });
+    //return this.http.put<updateemployee>(`${this.Api_url}updateEmployees`+ '/' +updateEmployeeDetails,{ 'headers': headers });
   }
 
 
@@ -34,4 +38,8 @@ export class EmployeeService {
   getEmployeeId(id:any){
    return this.http.get<employee>(`${this.Api_url}getemployees`+ '/' + id);
   }
+  // UpdateAllData(Id:any){
+  //   return this.http.put<employeetest>(`${this.Api_url}updateEmployees`+ '/' + id);
+
+  // }
 }

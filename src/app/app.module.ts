@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { DatePipe } from '@angular/common';
+import { Chart } from 'chart.js';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ChartsModule,
+    
     
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')

@@ -40,12 +40,13 @@ const routes: Routes = [
         loadChildren: () => import('./PaySlipMangement/pay-slip/pay-slip.module').then( m => m.PaySlipPageModule)
 
       },
-      {
-        path: ':payId',
-        loadChildren: () => import('./PaySlipMangement/pay-slip/payslipsummary/payslipsummary.module').then( m => m.PayslipsummaryPageModule)
-      },
+      
     ]
     
+  },
+  {
+    path: 'payslipSummary/:month/:year',
+    loadChildren: () => import('./PaySlipMangement/pay-slip/payslipsummary/payslipsummary.module').then( m => m.PayslipsummaryPageModule)
   },
  
   {
@@ -79,12 +80,13 @@ const routes: Routes = [
   {
     path: 'leave-details/:id',
     loadChildren: () => import('./LeaveMangementSystem/leave-details/leave-details.module').then( m => m.LeaveDetailsPageModule)
-  },  {
+  },
+  {
     path: 'my-feed',
     loadChildren: () => import('./Anniversery/my-feed/my-feed.module').then( m => m.MyFeedPageModule)
   },
   {
-    path: 'add-day-attendance',
+    path: 'add-day-attendance/:data',
     loadChildren: () => import('./AttendanceMangement/add-day-attendance/add-day-attendance.module').then( m => m.AddDayAttendancePageModule)
   },
 

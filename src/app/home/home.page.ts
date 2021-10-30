@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, Platform } from '@ionic/angular';
 
 @Component({
@@ -10,7 +11,9 @@ export class HomePage {
   
   empId:any;
   date:any;
-  constructor(private platform: Platform,
+  constructor(
+    private platform: Platform,
+    private router:Router,
     public alertCtrl: AlertController) {
     
   //   Date.prototype.getWeekOfMonth = function () {
@@ -26,6 +29,11 @@ export class HomePage {
     this.empId=localStorage.getItem('empId');
     console.log(this.empId);
    
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
   
   

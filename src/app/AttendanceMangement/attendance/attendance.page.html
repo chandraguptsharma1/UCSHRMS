@@ -84,10 +84,10 @@
  
   <ion-list>
     <ion-card>
-      <ion-item *ngFor="let data of allday">
+      <ion-item *ngFor="let data of allday" [routerLink]="['/add-day-attendance//', data.data]">
         
-        <ion-label>{{data |date:'EE, d'}}</ion-label>
-        <ion-button routerLink="">Add</ion-button>
+        <ion-label>{{data |date:'EE, dd,mm,yyyy'}}</ion-label>
+        <ion-button routerLink="/add-day-attendance" (click)="sendMessage()">Add</ion-button>
       </ion-item>
     </ion-card> 
   </ion-list>

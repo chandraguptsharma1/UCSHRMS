@@ -1,69 +1,44 @@
 <ion-header  >
   <ion-toolbar  >
     <ion-toolbar color="primary">
-      
-        <ion-buttons (click)="back()">
-          <ion-icon name="chevron-back-circle" style="font-size: 30px;"></ion-icon>
-          
-        </ion-buttons>      
-      
+      <ion-buttons slot="start" >
+        <!-- <ion-back-button  (click)="goBack()" ></ion-back-button> -->
+      </ion-buttons>
       <ion-buttons slot="end" routerLink="/add-pay-slip">
        <ion-button>
         <ion-icon   size="large" slot="end" width="100%"name="add"></ion-icon>
        </ion-button>
       </ion-buttons>
-      <!-- <ion-title class="ion-text-center">Payslips</ion-title> -->
-
     </ion-toolbar>
   </ion-toolbar>
-
-
       <div style="text-align: center;background-color: #bb2a27;margin-top:-18px;color: white;padding: 20px;" >
         <h2>Hey {{name}}</h2>
         <p>
           Welcome to payslips
          </p>
-
       </div>
-      <!-- <ion-card-title>
-        Hey {{name}}
-        </ion-card-title>
-      <p>
-       Welcome to payslips
-      </p>
-    </ion-card-content> -->
-
 </ion-header>
+
+<ion-card>
+  <ion-card-content>
+    <ion-item>
+      <ion-label> Select-Year</ion-label>
+      <ion-datetime  placeholder="select Year" displayFormat="YYYY" min="2021" max="2050" [(ngModel)]="selectyear" (ionChange)="getpayslipdata()" ></ion-datetime>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+
 <ion-content>
-<ion-content>
-  <div>
-   <ion-list >
-     <ion-card [routerLink]="['./',payslip.id]" *ngFor="let payslip of empPayslipDEtail" >
-      <ion-grid>
-        <ion-row>
-          <ion-col size="3">
-            <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" style="text-align: center;height: 30px;">
-          </ion-col>
-          <ion-col>
-            <ion-list style="text-align: start;">
-              <ion-title style="font-size: 15px;">{{payslip.month}}</ion-title>
-            <!-- <p>20 aug-30-aug</p> -->
-            </ion-list>
-          </ion-col>
-          <ion-col style="text-align: end;margin-top: 10px;font-size: 15px;">
-            <ion-title style="font-size: 15px;">{{payslip.amount}}</ion-title>
-          </ion-col>
-        </ion-row>
-       </ion-grid>
-     </ion-card>
-   </ion-list>
-  </div>
-</ion-content>
 <ion-list>
-   <ion-item></ion-item>
+  <ion-item *ngFor="let p of yearPayslip" [routerLink]="['/payslipSummary/', p.month,p.year]">
+ <ion-avatar slot="start">
+ <ion-img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png"></ion-img>
+ </ion-avatar>
+ <ion-label>{{p.month}}</ion-label>
+  </ion-item>
 </ion-list>
+
 </ion-content>
-<ion-header>
 
 
-
+<!-- <ion-label>{{p.id}}</ion-label> -->

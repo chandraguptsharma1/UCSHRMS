@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { EmpSlip } from 'src/app/model/empPayslip.module';
-import { EmpPayslipService } from 'src/app/services/empPayslip.service';
+import {  PayslipService } from 'src/app/services/empPayslip.service';
 
 @Component({
   selector: 'app-pay-slip',
@@ -12,31 +12,39 @@ import { EmpPayslipService } from 'src/app/services/empPayslip.service';
 export class PaySlipPage implements OnInit {
 
   public name='laxman';
-  empPayslipDEtail:EmpSlip[];
-  gottoPaySlipSummary(){
+  // payslip:Pays[];
+  selectyear:any;
+  empId:any;
+  yeardate:any;
+  yearPayslip:any=[];
 
 
-     this.navCtrl.navigateForward([':payId', {
-       data:JSON.stringify(this.empPayslipDEtail)
-     }])
-   }
+  constructor( private _router:Router,private payslipServices:PayslipService ) {
 
+    }
 
+    getpayslipdata(){
+      var year = new Date(this.selectyear).getFullYear();
+      this.yeardate=year;
+      console.log(year)
+      this.payslipServices.getyearPayslipDetails(this.empId,this.yeardate).subscribe((response) => {
+        console.log("im in server")
+        console.log(response);
+        console.log(JSON.stringify(response));
+        this.yearPayslip = (response);
+      })
+    }
 
-  constructor(private router: Router,private empSlipservice:EmpPayslipService,private navCtrl:NavController) { }
 
 
 
   ngOnInit() {
-    this.empPayslipDEtail =this.empSlipservice.getEmpPaySlip();
+    this.empId= "UCS019";
+    console.log(this.empId)
+    // this.payslip=this.payslipServices.getAllPayslips();
   }
-
-  goBack() {
-    this.router.navigate(['/home']);
-  }
-  back(){
-    this.navCtrl.navigateBack('/home');
-  }
-
 
 }
+
+
+

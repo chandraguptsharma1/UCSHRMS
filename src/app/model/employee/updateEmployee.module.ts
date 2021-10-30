@@ -1,7 +1,9 @@
 export interface updateemployee {
+    "id":number,
     "empId": string,
     "empName": string,
     "password": string,
+    "mobileNumber":number,
     "role": string,
     "designation": string,
     "dob":string,
@@ -10,5 +12,10 @@ export interface updateemployee {
     "panNo": string, 
     "adharNo": string,
     "status": string,
+    "bloodGroup":string,
+    "city":string,
+    "state":string,
+    "pincode":number,
+    "country":string,
     "email":string
 }
