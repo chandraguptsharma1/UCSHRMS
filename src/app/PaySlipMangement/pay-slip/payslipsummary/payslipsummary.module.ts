@@ -15,7 +15,7 @@ import { BarChart } from 'echarts/charts';
 import { TitleComponent, TooltipComponent, GridComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 import 'echarts/theme/macarons.js';
-import { ChartsModule } from 'ng2-charts';
+// import { ChartsModule } from 'ng2-charts';
 echarts.use(
   [TitleComponent, TooltipComponent, GridComponent, BarChart, CanvasRenderer]
 );
@@ -26,7 +26,7 @@ echarts.use(
     FormsModule,
     IonicModule,
     PayslipsummaryPageRoutingModule,
-    ChartsModule,
+    // ChartsModule,
     HeaderModule,
     NgxEchartsModule.forRoot({ echarts }),
   ],

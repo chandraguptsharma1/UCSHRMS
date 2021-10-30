@@ -5,7 +5,7 @@ import { NavController } from '@ionic/angular';
 import { EmpSlip } from 'src/app/model/empPayslip.module';
 import {  PayslipService } from 'src/app/services/empPayslip.service';
 import { Chart } from 'chart.js';
-import { ChartsModule } from 'ng2-charts';
+// import { ChartsModule } from 'ng2-charts';
 
 
 
