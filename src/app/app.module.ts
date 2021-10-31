@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { DatePipe } from '@angular/common';
 import { Chart } from 'chart.js';
+import { AuthenticateService } from './services/authenticate/authenticate.service';
+import { AuthguardService } from './services/authGuard/authguard.service';
 // import { ChartsModule } from 'ng2-charts';
 
 
@@ -24,6 +26,8 @@ import { Chart } from 'chart.js';
     HttpClientModule,
     ReactiveFormsModule,
     // ChartsModule,
+    // AuthenticateService,
+    // AuthguardService,
     
     
     NgxEchartsModule.forRoot({

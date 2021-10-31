@@ -40,6 +40,14 @@
           <ion-select-option >Personal</ion-select-option>
         </ion-select>
       </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.type">
+          <div style="color: red;text-align: end;" class="error-message"
+            *ngIf="addLeaveForm.get('type').hasError(validation.type) && (addLeaveForm.get('type').dirty || addLeaveForm.get('type').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
     
   
     <!---Manager Name-->
@@ -53,37 +61,69 @@
         </ion-select>
       </ion-item> -->
     
-  
+      <br>
     <!----Reasons For Leave-->
     <ion-item style="padding: 10px;">
       <ion-label position="floating">Reasons For Leave</ion-label>
       <ion-input formControlName="reasons"></ion-input>
       <!-- <show-errors [control]="addLeaveFormaddLeaveForm.controls.reasons"></show-errors> -->
     </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.reasons">
+        <div style="color: red;text-align: end;" class="error-message"
+          *ngIf="addLeaveForm.get('reasons').hasError(validation.reasons) && (addLeaveForm.get('reasons').dirty || addLeaveForm.get('reasons').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
   
     <!----- Start Date Of Leave-->
-    
+    <br>
       <ion-item>
         <ion-label>Start Date</ion-label>
         <ion-datetime placeholder="select Date" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09" formControlName="startDate"></ion-datetime>
       </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.startDate">
+          <div style="color: red;text-align: end;" class="error-message"
+            *ngIf="addLeaveForm.get('startDate').hasError(validation.startDate) && (addLeaveForm.get('startDate').dirty || addLeaveForm.get('startDate').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
     
   
       <!----- End Date Of Leave-->
-      
+      <br>
         <ion-item>
           <ion-label>End Date</ion-label>
           <ion-datetime placeholder="select Date" displayFormat="MM/DD/YYYY" min="1994-03-14" max="2012-12-09" formControlName="endDate"></ion-datetime>
         </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.endDate">
+            <div style="color: red;text-align: end;" class="error-message"
+              *ngIf="addLeaveForm.get('endDate').hasError(validation.endDate) && (addLeaveForm.get('endDate').dirty || addLeaveForm.get('endDate').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
       
   
       <!---Discription-->
       
-      
+      <br>
         <ion-item>
           <ion-label position="floating">Description</ion-label>
           <ion-textarea formControlName="discription"></ion-textarea>
         </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.discription">
+            <div style="color: red;text-align: end;" class="error-message"
+              *ngIf="addLeaveForm.get('discription').hasError(validation.discription) && (addLeaveForm.get('discription').dirty || addLeaveForm.get('discription').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
         <!-- <ion-item>
           <ion-label>Notes</ion-label>
           <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
@@ -91,6 +131,7 @@
       
   
       <!---Button-->
+      <br>
       <div style="text-align: center;padding: 10px;">
         <ion-button size="small" style="text-align: center;" type="submit">Submit</ion-button>
       </div>

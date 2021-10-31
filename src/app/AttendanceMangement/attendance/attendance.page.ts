@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, Output,EventEmitter  } from '@angular/core';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import * as moment from 'moment';
 import { WeekAndDayRangeService } from 'src/app/services/weekAndDay/week-and-day-range.service';
@@ -27,9 +28,14 @@ export class AttendancePage implements OnInit {
   Weekdays:any;
   saturdayAll:any=[];
   selectedValue
+  geValue:any;
   allday:any=[]
 
-  constructor(private navCtrl:NavController,private sharedS:WeekAndDayRangeService,public datepipe: DatePipe) { }
+  constructor(
+    private navCtrl:NavController,
+    private sharedS:WeekAndDayRangeService,
+    public datepipe: DatePipe,
+    public router:Router) { }
 
   ngOnInit() {
     this.attendance();
@@ -120,7 +126,10 @@ export class AttendancePage implements OnInit {
   };
   
   getValue(){
-    console.log(this.dateRange)
+    // console.log(this.dateRange)
+   this.geValue = this.dateRange;
+   console.log(this.geValue)
+
     const d  = new Date(this.dateRange);
     d.setDate(d.getDate()-5);
     var dateRangeList = []
@@ -131,24 +140,22 @@ export class AttendancePage implements OnInit {
       return d
   })
     console.log('start date',this.allday.reverse())
-    var start = new Date(this.dateRange);
-    var end = new Date(start.setFullYear(start.getDate()-5));
+    // var start = new Date(this.dateRange);
+    // var end = new Date(start.setFullYear(start.getDate()-5));
     // start.setDate(start.getDate()-5);
     // var end = new Date(start.setDate(d.getDate()+(6 - this.dateRange)));
-    console.log(start);
-    console.log(end);
+    // console.log(start);
+    // console.log(end);
     
   
     // let days=null;
     // console.log(this.dateRange);
     // this.dateall = this.dateRange.split(',');
     // console.log(this.dateall[0]);
-    const dates = this.sharedS.getDateRange(d,this.dateRange);
-    const weeksGrouped = this.sharedS.getWeeksMapped(dates);
-    // days = dates;
-    console.log(weeksGrouped);
-    // this.Weekdays=dates;
-    // console.log(this.Weekdays)
+    // const dates = this.sharedS.getDateRange(d,this.dateRange);
+    // const weeksGrouped = this.sharedS.getWeeksMapped(dates);
+    
+    
   }
 
   getAllSaturday(y: any): any {
@@ -164,18 +171,21 @@ export class AttendancePage implements OnInit {
       D.setDate(D.getDate() + 7);
       if (D.getFullYear() != y) return A;
       list =A.push(D.toLocaleDateString());
-      console.log(A)
       
-       console.log(list);
 
       
       
     }
-    console.log(A);
+ 
   }
 
-  addPage(){
-
+  addPagePassData(){
+    const navigationExtras:NavigationExtras ={
+      state:{
+        range:this.geValue
+      }
+    };
+    this.router.navigate(['add-day-attendance'],navigationExtras);
   }
 
 

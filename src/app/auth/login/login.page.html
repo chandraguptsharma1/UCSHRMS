@@ -1,30 +1,64 @@
+<ion-content>
+  <ion-card style="padding: 20px;">
+    <div style="text-align: center; ">
+      <img src="../../../assets/loginLogo.png" style="height:120px ;">
+    </div>
+    <br>
 
-<ion-content padding  style="background-image: url('../../../assets/logoBackground.png');">
-  <div style="text-align: center; margin-top: 120px;">
-    <img src="../../../assets/loginLogo.png" style="height:250px ;">
+    <div >
+      <ion-item style="text-align: center;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: salmon;font-weight: bold;" >
+        <ion-label>Login With EmpId</ion-label>
+      </ion-item>      
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+      <div style="text-align: center;margin-top: 20px;" id="container">
+        <ion-list>
+          <ion-item id="rounded">
+            <ion-label position="floating">EmpId</ion-label>
+            <ion-input formControlName="empId" type="text" class="form-controll"></ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.empId">
+              <div style="color: red;" class="error-message"
+                *ngIf="loginForm.get('empId').hasError(validation.type) && (loginForm.get('empId').dirty || loginForm.get('empId').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+          <ion-item id="rounded">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input formControlName="password" type="text"></ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div style="color: red;" class="error-message"
+                *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-list>
+      </div>
+      <div>
+        <h5 style="margin-left: 60px;margin-top: -2px;color: grey;font-size: 15px;" routerLink="/forget-password">Forget
+          Password</h5>
+      </div>
+
+      <div style="text-align: center;margin-top: 20px;">
+        <ion-button type="submit">
+          Login
+        </ion-button>
+      </div>
+    </form>
+  </ion-card>
+  <div style="text-align: center;">
+    <img src="../../../assets/loginbackground.png">
   </div>
-  <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
-    <div style="text-align: center;margin-top: 20px;" id="container">
-      <ion-list>
-        <ion-item id="rounded">
-          <ion-label position="floating">EmpId</ion-label>
-          <ion-input formControlName="empId" type="text"></ion-input>
-        </ion-item>
-        <ion-item id="rounded">
-          <ion-label position="floating">Password</ion-label>
-          <ion-input formControlName="password" type="text"></ion-input>
-        </ion-item>
-      </ion-list>    
+  <ion-footer>
+    <div class="lower-content" style="text-align: center;">
+      <p style="margin-top: 10px;">Hrms &copy; 2021 All Rights Reserved UCS.com</p>
     </div>
-    <div>
-      <h5 style="margin-left: 60px;margin-top: -2px;color: grey;" routerLink="/forget-password">Forget Password</h5>
-    </div>
-  
-    <div style="text-align: center;">
-      <ion-button type="submit">
-        Login
-      </ion-button>
-    </div>
-  </form>
-  
+  </ion-footer>
+
+
 </ion-content>

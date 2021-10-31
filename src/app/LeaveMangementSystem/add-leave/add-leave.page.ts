@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { leave } from 'src/app/model/leave.module';
@@ -31,15 +31,40 @@ export class AddLeavePage implements OnInit {
     private loading:LoaderService,
     private navCtrl:NavController) {
     this.addLeaveForm = this.fb.group({
-      type: ['',Validators.required],
-      manager: ['',Validators.required],
-      reasons: ['',Validators.required],
-      startDate: ['',Validators.required],
-      endDate: ['',Validators.required],
-      noofDays: ['',Validators.required],
-      discription: ['',Validators.required]
+      
+      type: new FormControl('', Validators.required),
+      manager:new FormControl('', Validators.required),
+      reasons: new FormControl('', Validators.required),
+      startDate:new FormControl('', Validators.required),
+      endDate: new FormControl('', Validators.required),
+      noofDays:new FormControl('', Validators.required),
+      discription: new FormControl('', Validators.required)
     })
   }
+  validation_messages = {
+    'type': [
+      { type: 'required', message: 'type is required.' },
+      
+    ],
+    'reasons': [
+      { type: 'required', message: 'reasons is required.' },
+      { type: 'minlength', message: 'reasons must be at least 5 characters long.' },
+    ],
+    'startDate': [
+      { type: 'required', message: 'startDate is required.' },
+      
+    ],
+    'endDate': [
+      { type: 'required', message: 'endDate is required.' },
+     
+    ],
+    'discription': [
+      { type: 'required', message: 'discription is required.' },
+      
+    ],
+    
+    
+    }
 
 
   submitleaveForm() {

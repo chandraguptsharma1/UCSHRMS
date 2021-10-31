@@ -21,27 +21,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-content>
-
-<input type="file" (change)="onFileChange($event)" />
-
-
-
-<div>
-  <ion-grid>
-    <ion-row>
+  <ion-card style="padding: 20px;">
     
-      <ion-col>
-       <ion-button (click)="saveFile()">
-          Save File
-       </ion-button>
-     </ion-col>
-    </ion-row>
-  </ion-grid>
+    <div style="text-align: center;margin-top: 10px;">
+      <input type="file" (change)="onFileChange($event)"  style="text-align: center;"/>
+    </div>
+      
+
+
+
+<div style="text-align: center;margin-top: 20px;">
+  <ion-button (click)="saveFile()">
+    Save File
+ </ion-button>
 </div>
 
-</ion-card-content>
+
 </ion-card>
 
 

@@ -69,10 +69,9 @@
 
     
     <ion-item>
-      <ion-label>Select the Week</ion-label>
+      <ion-label>Select the Saturday</ion-label>
       <ion-select placeholder="Select One" [(ngModel)]="dateRange" (ionChange)="getValue()" >
-        <ion-select-option *ngFor="let saturday of saturdayAll" [value]="saturday">{{saturday | date: 'dd/MM/yyyy'}}</ion-select-option>
-        
+        <ion-select-option *ngFor="let saturday of saturdayAll" [value]="saturday">{{saturday | date}}</ion-select-option>      
       </ion-select>
     </ion-item>
  
@@ -82,14 +81,11 @@
 <ion-content>
   
  
-  <ion-list>
-    <ion-card>
-      <ion-item *ngFor="let data of allday" [routerLink]="['/add-day-attendance//', data.data]">
-        
-        <ion-label>{{data |date:'EE, dd,mm,yyyy'}}</ion-label>
+  <ion-list>   
+      <ion-item *ngFor="let data of allday" >       
+        <ion-label>{{data |date:'EE dd'}}</ion-label>
         <ion-button routerLink="/add-day-attendance" (click)="sendMessage()">Add</ion-button>
-      </ion-item>
-    </ion-card> 
+      </ion-item>   
   </ion-list>
   <!-- <ion-card >
     <ion-label>{{saturdayAll|date}}</ion-label>

@@ -4,7 +4,7 @@ import { NavController } from '@ionic/angular';
 
 import { EmpSlip } from 'src/app/model/empPayslip.module';
 import {  PayslipService } from 'src/app/services/empPayslip.service';
-import { Chart } from 'chart.js';
+import Chart from 'chart.js/auto';
 // import { ChartsModule } from 'ng2-charts';
 
 
@@ -18,7 +18,7 @@ import { Chart } from 'chart.js';
 export class PayslipsummaryPage implements OnInit {
 // loadedpayslip:Pays;
 @ViewChild('pieChart') pieChart;
-
+@ViewChild("doughnutCanvas") doughnutCanvas: ElementRef;
 pies:any;
 colorArray: any;
 
@@ -29,6 +29,8 @@ colorArray: any;
   details:any=[];
   monthid:any;
   yearid:any;
+
+  private doughnutChart: Chart;
 
 
   // url:"http://49.50.69.37:8089/HRMSServices/downloadPayslip/UCS03/December/2021";
@@ -45,48 +47,33 @@ colorArray: any;
       this.payslipServices.getPayslipDetails(this.empId,this.monthid,this.yearid).subscribe((response) => {
         this.details = response[0];
         console.log(this.details)
-      })
-      // this.createBarChart();
-      this.createpieChart();
-    }
-    createpieChart() {
-      this.pies = new Chart(this.pieChart.nativeElement, {
-        type: 'doughnut',
-        data: {
-          labels: ['NetPay', 'GrossPay', 'projectIncentives', 'Epf','Medical'],
-          datasets: [{
-            label: 'salary as per month',
-            data: [10000, 70000, 2300, 2100,3200],
-
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(75, 192, 192, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(75, 192, 192, 1)'
-
-            ],
-            borderWidth: 1
-          }]
-        },
-        // options: {
-        //   scales: {
-        //     yAxes: [{
-        //       ticks: {
-        //         beginAtZero: true
-        //       }
-        //     }]
-        //   }
-        // }
       });
+
+      this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+        type: "doughnut",
+        data: {
+          labels: ["netPay", "GrossPay", "ProjectIntensive", "Epf", "Medical", ],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [this.details.netPay,this.details.gross, 6,2],
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)"
+              ],
+              hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#FF6384", "#36A2EB", "#FFCE56"]
+            }
+          ]
+        }
+      });
+      // this.createBarChart();
+      // this.createpieChart();
     }
+  
 
 
 
@@ -98,13 +85,15 @@ colorArray: any;
   //  download(url){
   //     window.open(url);
   //   }
-
+  ngAfterViewInit(): void {
+    
+  }
 
   ngOnInit() {
 
-  this.empId="UCS02";
+  this.empId="UCS019";
 
-   
+  
     // console.log(this.loadedpayslip);
   }
 

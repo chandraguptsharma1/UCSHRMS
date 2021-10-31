@@ -24,10 +24,26 @@ export class LoginPage implements OnInit {
     private router:Router,
     private loading:LoaderService ) {
     this.loginForm = this.fb.group({
-      empId:['',Validators.required],
-      password:['',Validators.required]
+      empId: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
     })
    }
+
+   validation_messages = {
+    'empId': [
+      { type: 'required', message: 'empId is required.' },
+      { type: 'minlength', message: 'empId must be at least 5 characters long.' },
+      { type: 'maxlength', message: 'empId cannot be more than 25 characters long.' },
+      { type: 'pattern', message: 'Your empId must contain only numbers and letters.' },
+      { type: 'validUsername', message: 'Your empId has already been taken.' }
+    ],
+    'password': [
+      { type: 'required', message: 'password is required.' },
+      { type: 'minlength', message: 'password must be at least 5 characters long.' },
+    ],
+    
+    
+    }
   ngOnInit(): void {
     
   }
@@ -60,6 +76,9 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/login']);
         this.loading.dismiss();
 
+      }else if(data.resCode== null){
+        this.toastService.presentToast('Insert correct credencial');
+        this.loading.dismiss();
       }
     });
   }

@@ -87,4 +87,13 @@ export class LeaveDetailsPage implements OnInit {
                      return false ;
   }
 
+  getColor(status){(2)
+    switch(status){
+      case 'approve':
+        return 'green';
+      case 'reject':
+        return 'red';
+    }
+  }
+
 }

@@ -59,6 +59,15 @@ export class LeavePage implements OnInit {
 
     await alert.present();
   }
+  
+  getColor(status){(2)
+    switch(status){
+      case 'approve':
+        return 'green';
+      case 'reject':
+        return 'red';
+    }
+  }
 
   back(){
     this.navCtrl.navigateBack('/home');

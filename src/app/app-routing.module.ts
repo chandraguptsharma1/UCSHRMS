@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthguardService } from './services/authGuard/authguard.service';
 
 const routes: Routes = [
   {
@@ -9,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+   
   },
  
   {
@@ -86,7 +88,7 @@ const routes: Routes = [
     loadChildren: () => import('./Anniversery/my-feed/my-feed.module').then( m => m.MyFeedPageModule)
   },
   {
-    path: 'add-day-attendance/:data',
+    path: 'add-day-attendance',
     loadChildren: () => import('./AttendanceMangement/add-day-attendance/add-day-attendance.module').then( m => m.AddDayAttendancePageModule)
   },
 

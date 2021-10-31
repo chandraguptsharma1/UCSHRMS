@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forgetPassword } from 'src/app/model/forgetPassword/forgetPassword.module';
 import { ForgetPasswordService } from 'src/app/services/forgetpassword/forget-password.service';
@@ -21,10 +21,20 @@ export class ForgetPasswordPage implements OnInit {
     private loading:LoaderService,
     private toastService: ToastService) { 
     this.forgetForm = this.fb.group({
-      emailId:['',Validators.required]
+      emailId: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
     });
 
   }
+
+  validation_messages = {
+    'emailId': [
+      { type: 'required', message: 'emailId is required.' },
+      { type: 'pattern', message: 'Insert Valid Email id.' },     
+    ],
+    }
 
   forgetPassword(){
     this.loading.present();
