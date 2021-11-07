@@ -1,10 +1,11 @@
 export interface AddAttendance{
     
          "empId":string,        
-         "startTime":Date,
-         "endTime":Date,
+         "startTime":string,
+         "endTime":string,
          "projectId":string,
          "description":string,    
-         "attendedDate":Date   
+         "attendedDate":Date,
+            
       
 }

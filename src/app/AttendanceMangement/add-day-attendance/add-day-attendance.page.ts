@@ -18,10 +18,11 @@ export class AddDayAttendancePage implements OnInit {
   attendanceForm: FormGroup;
   attendance:any={};
   startDate:any;
-  date:any;
+  data:any;
   projectId:any=[];
+  date:any
   
-  @Input() childMessage: string;
+  
   
   constructor(
       private router:Router,
@@ -32,10 +33,12 @@ export class AddDayAttendancePage implements OnInit {
       private navCtrl:NavController,
       private activatedRoute:ActivatedRoute,
       private attendanceService:AttendanceService,
-      private projectService:ProjectIdService
+      private projectService:ProjectIdService,
+      
 
   ) { 
-    
+    this.data = this.activatedRoute.snapshot.paramMap.get('d');
+    console.log(this.data);
 
     this.attendanceForm = this.fb.group({
      projectId:[''],
@@ -67,32 +70,21 @@ export class AddDayAttendancePage implements OnInit {
     })
   }
 
+
+  back(){
+    this.navCtrl.navigateBack('/attendance');
+  }
+  page:any;
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((params:any)=>{
-      console.log(params)
+    // console.log('>>date Selected',this.router.getCurrentNavigation().extras.state);
+    // var date1 = this.router.getCurrentNavigation().extras.state;
+    // console.log(JSON.stringify(date1.dateSelected))
+    // this.date = new Date(JSON.stringify(date1.dateSelected));
+    // console.log(this.date)
+
+  }
+
+  
  
-    });
-     this.date= '2021-11-09T11:53:20.000+00:00';
-     console.log(this.date);
-
-     this.projectService.getProjectId().subscribe((response:any)=>{
-       console.log(response);
-       
-     })
-
-  }
-
-  submitattendanceForm(){
-
-  }
- test:any;
-  getdata(){
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation.extras.state as {
-      range:Date
-    };
-    this.test = "saturday"+state.range;
-    console.log(this.test)
-  }
 
 }

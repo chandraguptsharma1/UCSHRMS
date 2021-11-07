@@ -19,7 +19,7 @@ export class PaySlipPage implements OnInit {
   yearPayslip:any=[];
 
 
-  constructor( private _router:Router,private payslipServices:PayslipService ) {
+  constructor( private _router:Router,private payslipServices:PayslipService,private navCtrl:NavController, ) {
 
     }
 
@@ -28,18 +28,26 @@ export class PaySlipPage implements OnInit {
       this.yeardate=year;
       console.log(year)
       this.payslipServices.getyearPayslipDetails(this.empId,this.yeardate).subscribe((response) => {
-        console.log("im in server")
+        if(response !=null){
+          this.yearPayslip = response;
+          console.log("im in server")
         console.log(response);
         console.log(JSON.stringify(response));
-        this.yearPayslip = (response);
+        }else{
+          this.yearPayslip = false;
+        }
+        
+        
       })
     }
 
-
+    back(){
+      this.navCtrl.navigateBack('/home');
+    }
 
 
   ngOnInit() {
-    this.empId= "UCS019";
+    this.empId= localStorage.getItem('empId');
     console.log(this.empId)
     // this.payslip=this.payslipServices.getAllPayslips();
   }

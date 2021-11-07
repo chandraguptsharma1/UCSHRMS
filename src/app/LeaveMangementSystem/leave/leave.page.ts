@@ -75,8 +75,13 @@ export class LeavePage implements OnInit {
 
    ionViewDidEnter() {
     this.leaveService.getleave().subscribe((response) => {
-      this.leaves = response;
-      this.startdate = this.leaves.startDate
+      if(response !=null){
+        this.leaves = response;
+        this.startdate = this.leaves.startDate
+      }else{
+        this.leaves = false;
+      }
+      
       // this.startdate = this.datepipe.transform(this.leaves.startDate, 'dd/MM/yyyy')
       console.log(this.leaves)
       console.log(this.startdate)

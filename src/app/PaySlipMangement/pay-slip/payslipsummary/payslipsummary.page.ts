@@ -36,6 +36,7 @@ colorArray: any;
   // url:"http://49.50.69.37:8089/HRMSServices/downloadPayslip/UCS03/December/2021";
 
   constructor(private activatedRoute:ActivatedRoute,
+    private navCtrl:NavController,
     private payslipServices:PayslipService)
      {
       this.monthid = this.activatedRoute.snapshot.paramMap.get('month');
@@ -89,9 +90,14 @@ colorArray: any;
     
   }
 
+  back(){
+    this.navCtrl.navigateBack('/home');
+  }
+
   ngOnInit() {
 
-  this.empId="UCS019";
+  this.empId=localStorage.getItem('empId');
+  console.log(this.empId);
 
   
     // console.log(this.loadedpayslip);

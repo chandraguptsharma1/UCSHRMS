@@ -16,9 +16,7 @@ const routes: Routes = [
  
   {
     path: 'employee',
-    loadChildren: () => import('./EmployeeMangement/employee/employee.module').then( m => m.EmployeePageModule)
-
-    
+    loadChildren: () => import('./EmployeeMangement/employee/employee.module').then( m => m.EmployeePageModule) 
   },
   {
     path: 'update-employee-details/:id',
@@ -88,7 +86,7 @@ const routes: Routes = [
     loadChildren: () => import('./Anniversery/my-feed/my-feed.module').then( m => m.MyFeedPageModule)
   },
   {
-    path: 'add-day-attendance',
+    path: 'adddayattendance/:d',
     loadChildren: () => import('./AttendanceMangement/add-day-attendance/add-day-attendance.module').then( m => m.AddDayAttendancePageModule)
   },
 

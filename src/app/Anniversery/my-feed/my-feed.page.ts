@@ -10,6 +10,7 @@ import { AnniversaryService } from 'src/app/services/anniversary/anniversary.ser
 export class MyFeedPage implements OnInit {
 
   aniversary:any=[];
+  aniversaryNo:any;
 
   constructor(private navCtrl:NavController,
     private annivarsary:AnniversaryService) { }
@@ -23,8 +24,12 @@ export class MyFeedPage implements OnInit {
 
   ionViewDidEnter() {
     this.annivarsary.getAnniversary().subscribe((response) => {
-
-      this.aniversary = response;
+      if(response !=null){
+        this.aniversary = response;
+      }else{
+        this.aniversary = false;
+      }
+      
       console.log(this.aniversary)
     })
   }

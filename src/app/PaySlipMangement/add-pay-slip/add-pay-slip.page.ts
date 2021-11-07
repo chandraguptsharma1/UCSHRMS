@@ -20,68 +20,80 @@ export class AddPaySlipPage implements OnInit {
   jsonall:any;
   jsonData:any
 
-  constructor(  private uploadf:PayslipService) {
+  constructor(  private uploadf:PayslipService,private navCtrl:NavController,) {
 
      }
 
   ngOnInit() {
-    this.documentType = "xl";
+    this.documentType = ".xls";
     this.empId = "102";
   }
+  filename: string = '' ;
   onFileChange(ev: any) {
     let workBook: any = null;
     let jsonData = null;
+    
     const reader = new FileReader();
     const file = ev.target.files[0];
-    reader.onload = (event) => {
-      const data = reader.result;
-      workBook = XLSX.read(data, {
-        type: 'binary',
-        cellDates: true,
-        cellNF: false,
-        cellText: false
-      });
-      jsonData = workBook.SheetNames.reduce((initial: any, name: any) => {
-        const sheet = workBook.Sheets[name];
-        initial[name] = XLSX.utils.sheet_to_json(sheet);
-        return initial;
-      }, {});
-      const dataString = JSON.stringify(jsonData);
-      console.log('dataString', dataString)
-      this.jsonData = dataString;
-      // this.saveFile(dataString)
+    this.filename= file.name;
+    if(this.filename == this.documentType){
+      reader.onload = (event) => {
+        const data = reader.result;
+        workBook = XLSX.read(data, {
+          type: 'binary',
+          cellDates: true,
+          cellNF: false,
+          cellText: false
+        });
+        jsonData = workBook.SheetNames.reduce((initial: any, name: any) => {
+          const sheet = workBook.Sheets[name];
+          initial[name] = XLSX.utils.sheet_to_json(sheet);
+          return initial;
+        }, {});
+        const dataString = JSON.stringify(jsonData);
+        console.log('dataString', dataString)
+        this.jsonData = dataString;
+        // this.saveFile(dataString)
+      }
+      reader.readAsBinaryString(file);
+    }else{
+      console.log('not xlsx file')
     }
-    reader.readAsBinaryString(file);
+    
   }
-  onFileChange1(ev) {
-    let workBook = null;
-    let jsonData = null;
-    let dataall = null;
-    const reader = new FileReader();
-    const file = ev.target.files[0];
-    reader.onload = (event) => {
-      const data = reader.result;
-      // console.log(data);
+  // onFileChange1(ev) {
+  //   let workBook = null;
+  //   let jsonData = null;
+  //   let dataall = null;
+  //   const reader = new FileReader();
+  //   const file = ev.target.files[0];
+  //   reader.onload = (event) => {
+  //     const data = reader.result;
+  //     // console.log(data);
 
-      workBook = XLSX.read(data, { type: 'binary' });
-      // console.log(workBook);
-      jsonData = workBook.SheetNames.reduce((initial, name) => {
-        const sheet = workBook.Sheets[name];
-        initial[name] = XLSX.utils.sheet_to_json(sheet);
-        return initial;
-      }, {});
-      // console.log(jsonData);
-      const dataString = JSON.stringify(jsonData);
-      this.jsonall = dataString;
+  //     workBook = XLSX.read(data, { type: 'binary' });
+  //     // console.log(workBook);
+  //     jsonData = workBook.SheetNames.reduce((initial, name) => {
+  //       const sheet = workBook.Sheets[name];
+  //       initial[name] = XLSX.utils.sheet_to_json(sheet);
+  //       return initial;
+  //     }, {});
+  //     // console.log(jsonData);
+  //     const dataString = JSON.stringify(jsonData);
+  //     this.jsonall = dataString;
 
-      console.log('jsonData',this.jsonall);
+  //     console.log('jsonData',this.jsonall);
 
-      document.getElementById('output').innerHTML = dataString.slice(0, 300).concat("...");
-      // this.setDownload(dataString);
-      this.uploadfile = dataString;
-    }
-    reader.readAsBinaryString(file);
+  //     document.getElementById('output').innerHTML = dataString.slice(0, 300).concat("...");
+  //     // this.setDownload(dataString);
+  //     this.uploadfile = dataString;
+  //   }
+  //   reader.readAsBinaryString(file);
 
+  // }
+
+  back(){
+    this.navCtrl.navigateBack('/home');
   }
 
   saveFile(): void{
