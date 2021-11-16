@@ -17,6 +17,8 @@ export class LeavePage implements OnInit {
   leaves:any=[];
   startdate:any;
   status:any;
+  userRole:any;
+  empId:any
   
 
  
@@ -32,6 +34,8 @@ export class LeavePage implements OnInit {
     // this.leaves = this.leaveService.getLeave();
     this.userType ="User";
     this.userTypeId= 2;
+    this.userRole = localStorage.getItem('empRole');
+    this.empId = localStorage.getItem('empId')
   }
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
@@ -73,8 +77,8 @@ export class LeavePage implements OnInit {
     this.navCtrl.navigateBack('/home');
   }
 
-   ionViewDidEnter() {
-    this.leaveService.getleave().subscribe((response) => {
+  ionViewDidEnter() {
+    this.leaveService.getleave(this.empId).subscribe((response) => {
       if(response !=null){
         this.leaves = response;
         this.startdate = this.leaves.startDate

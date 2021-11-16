@@ -42,4 +42,8 @@ export class EmployeeService {
   //   return this.http.put<employeetest>(`${this.Api_url}updateEmployees`+ '/' + id);
 
   // }
+
+  getDocument(empId:any){
+    return this.http.get(`${this.Api_url}fetchEmpDocs`+'/'+empId);
+  }
 }

@@ -1,0 +1,39 @@
+
+
+<ion-content>
+  <ion-card *ngFor="let leave of leaves" [routerLink]="['/managerleave-details/', leave.id]">
+    <ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col style="font-weight:400;font-size:small;" class="ion-align-self-start">
+           {{leave.leaveType}}
+          </ion-col>
+          <ion-col style="text-align: end;color: orangered;" [ngStyle]="{'color':getColor(leave.status)}" >
+            {{leave.status}}
+          </ion-col>
+          <ion-col style="text-align: end;color: blue;" *ngIf="leave.status == pending">
+            pending
+          </ion-col>
+          
+        </ion-row>
+        <br>
+        <div style="text-align: center;" >
+          <ion-label>Reason: {{ leave.reason}}</ion-label>
+        </div>
+        <ion-col style="color: darkgrey;">
+          <ion-row>
+            <ion-col  style="text-align: start;">
+              <span style="color: seagreen;font-weight: bold;">Start Date:</span> {{leave.startDate |date}}
+            </ion-col>
+            <ion-col   style="text-align:end;">
+              <span style="color: seagreen;font-weight: bold;">End Date:</span> {{leave.endDate |date}}
+            </ion-col>
+            
+          </ion-row>
+        </ion-col>
+      
+      </ion-grid>
+      
+    </ion-list>    
+  </ion-card>
+</ion-content>

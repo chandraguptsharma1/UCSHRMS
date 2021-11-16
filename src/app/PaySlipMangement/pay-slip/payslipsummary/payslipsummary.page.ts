@@ -39,10 +39,7 @@ colorArray: any;
     private navCtrl:NavController,
     private payslipServices:PayslipService)
      {
-      this.monthid = this.activatedRoute.snapshot.paramMap.get('month');
-      this.yearid = this.activatedRoute.snapshot.paramMap.get('year');
-      console.log(this.monthid);
-      console.log(this.yearid);
+      
      }
      ionViewDidEnter() {
       this.payslipServices.getPayslipDetails(this.empId,this.monthid,this.yearid).subscribe((response) => {
@@ -91,11 +88,14 @@ colorArray: any;
   }
 
   back(){
-    this.navCtrl.navigateBack('/home');
+    this.navCtrl.navigateBack('/pay-slip');
   }
 
   ngOnInit() {
-
+    this.monthid = this.activatedRoute.snapshot.paramMap.get('month');
+    this.yearid = this.activatedRoute.snapshot.paramMap.get('year');
+    console.log(this.monthid);
+    console.log(this.yearid);
   this.empId=localStorage.getItem('empId');
   console.log(this.empId);
 

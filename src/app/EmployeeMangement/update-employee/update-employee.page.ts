@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, PopoverController } from '@ionic/angular';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
 // import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 // import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -16,6 +16,8 @@ import { LoaderService } from 'src/app/services/loading/loader.service';
 //import { Console } from 'console';
 // import { MultiFileUploadComponent } from '../components/multi-file-upload/multi-file-upload.component';
 const IMAGE_DIR = 'stored-images';
+// import {MatDialogModule} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-update-employee',
@@ -36,6 +38,15 @@ export class UpdateEmployeePage implements OnInit {
   uploadSub: Subscription;
   document:any;
   documentType: string;
+  //states:any=[]
+  states: any=[
+    "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", 
+    "Chhattisgarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", 
+    "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", 
+    "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry",
+     "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttaranchal", "Uttar Pradesh", "West Bengal"
+    ]
+  // dataService: any;
   // @ViewChild(MultiFileUploadComponent) fileField: MultiFileUploadComponent;
 
   constructor(private router:Router,
@@ -45,13 +56,16 @@ export class UpdateEmployeePage implements OnInit {
     private navCtrl:NavController,
     private http: HttpClient,
     private toastService: ToastService,
-    private loading:LoaderService,) {
+    private loading:LoaderService,
+    ) {
 
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
+    this.empId = this.activatedRoute.snapshot.paramMap.get('empId');
+    console.log(this.empId);
 
     //this.router.snapshot.params["id"];
     this.updateEmployee = this.fb.group({
+    id:[''],
+    empId:[''],
     empName:[''],
     email:[''],
     password:[''],
@@ -75,9 +89,14 @@ export class UpdateEmployeePage implements OnInit {
   }
 
   ngOnInit() {
-    this.empId="104";
+    //this.empId="104";
     //this.fetchemployee(this.id);
     //this.updateeemployeeForm(this.id);
+    // this.employeeService.getJSON().subscribe(data => {
+    //   console.log(JSON.stringify(data.states));
+    //   this.states = JSON.stringify(data.states)
+    //   console.log("JSONDATA::"+this.states);
+  // });
     
   }
 
@@ -113,10 +132,14 @@ export class UpdateEmployeePage implements OnInit {
   // }
 
   ionViewDidEnter() {
-    this.employeeService.getEmployeeId(this.id).subscribe((response) => {
+    this.employeeService.getEmployeeId(this.empId).subscribe((response) => {
       this.employees = response;
       console.log(this.employees)
-    })
+    });
+
+    this.employeeService.getDocument(this.empId).subscribe((response)=>{
+      console.log(response);
+    });
   }
   back(){
     this.navCtrl.navigateBack('/employee');
@@ -226,6 +249,7 @@ uploadDoc(){
 
 
     updateEmployeeForm(){
+    const id=this.updateEmployee.get('id').value
     //const empId = this.updateEmployee.get('empId').value
     const empName = this.updateEmployee.get('empName').value
     const email = this.updateEmployee.get('email').value
@@ -247,7 +271,8 @@ uploadDoc(){
     // const requestBody= `{empName:${dob},mobileNumber:${mobileNumber}}`
     // console.log(requestBody);
       const updateDetails:updateemployee={
-        id:this.id,
+
+        id:this.employees.id,
         empId:this.empId,
         empName:empName,
         email:email,
@@ -267,6 +292,7 @@ uploadDoc(){
         state:state,
         status:status,        
       }
+      
       console.log(updateDetails)
       this.employeeService.updateEmployeeDetail(updateDetails).subscribe((data:any)=>{
         this.toastService.presentToast('Employee Added');
@@ -282,9 +308,23 @@ uploadDoc(){
         }
       });
       console.log("server not enter")
+      
   
      // http://49.50.69.37:8089/HRMSServices/updateEmployees
     }
+    
+    // async openModal(){
+    //   const modal = await this.modalCtrl.create({
+    //     component:  
+    //   })
   
+    //   return await modal.present();
+    // }
+
+    documentUpload(){
+      console.log(this.employees.empId);
+      this.router.navigateByUrl('/upload-document', {
+        state: { dateSelected: this.employees.empId }
+      });
+    }
 }
-//}

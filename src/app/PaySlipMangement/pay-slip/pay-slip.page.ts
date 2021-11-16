@@ -17,11 +17,13 @@ export class PaySlipPage implements OnInit {
   empId:any;
   yeardate:any;
   yearPayslip:any=[];
+  empName:any;
 
 
   constructor( private _router:Router,private payslipServices:PayslipService,private navCtrl:NavController, ) {
 
     }
+    
 
     getpayslipdata(){
       var year = new Date(this.selectyear).getFullYear();
@@ -47,8 +49,10 @@ export class PaySlipPage implements OnInit {
 
 
   ngOnInit() {
+    this.empName = localStorage.getItem('empName');
     this.empId= localStorage.getItem('empId');
-    console.log(this.empId)
+    console.log(this.empId),
+    console.log(this.empName)
     // this.payslip=this.payslipServices.getAllPayslips();
   }
 

@@ -1,0 +1,18 @@
+<ion-content>
+  <!-- <ion-item>
+    <ion-button (click)="closeModal()" size="small" slot="end">Close</ion-button>
+  </ion-item> -->
+  <ion-card>
+  <ion-item>
+    <ion-select placeholder="select document type" [(ngModel)]="documentType">
+      <ion-select-option value="pancard">PAN CARD</ion-select-option>
+      <ion-select-option value="addharcard">AADHAR CARD</ion-select-option>
+      <ion-select-option value="addharcard">Other</ion-select-option>
+    </ion-select>
+  </ion-item>
+<ion-item>
+       <input type="file" id="file" accept="image/*" (change)="onFileSelected($event)" />
+      <ion-button color="secondary" (click)="uploadDoc()">Upload</ion-button>
+</ion-item>
+</ion-card>
+</ion-content>

@@ -1,5 +1,7 @@
 export interface leave{
-    id:number,
+    managerName:string,
+    managerEmpId:string,
+    empId:number,
     leaveType: string,
     reason:string
     startDate: string,

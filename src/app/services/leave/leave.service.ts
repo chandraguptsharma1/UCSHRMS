@@ -19,8 +19,8 @@ export class LeaveService {
     return this.http.post<leave>(`${this.Api_url}add-leaverequest`,userDetails,{ 'headers': headers });
   }
 
-  getleave(){
-    return this.http.get<leave>(`${this.Api_url}all-leaverequest`);
+  getleave(empId:any){
+    return this.http.get<leave>(`${this.Api_url}all-leaverequest`+"/"+empId);
   }
 
   getleaveById(leaveid:LeaveId){
@@ -28,6 +28,10 @@ export class LeaveService {
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*');
     return this.http.post<LeaveId>(`${this.Api_url}getLeaveDetails`,leaveid,{ 'headers': headers });
+   }
+
+   getLeaveManager(){
+    return this.http.get<leave>(`${this.Api_url}managerLeaveRequest`);
    }
 }
 

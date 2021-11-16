@@ -16,6 +16,7 @@ import { ToastService } from 'src/app/services/toastMessage/toast.service';
 export class LeaveDetailsPage implements OnInit {
   id: any;
   leaveDetails:any=[];
+  empRole:any;
 
   constructor(private activatedRoute: ActivatedRoute,
     private loading: LoaderService,
@@ -73,6 +74,9 @@ export class LeaveDetailsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.empRole = localStorage.getItem('empRole');
+    console.log(this.empRole);
+
   }
 
   isStatusReject(){
@@ -94,6 +98,16 @@ export class LeaveDetailsPage implements OnInit {
       case 'reject':
         return 'red';
     }
+  }
+  cancel(){
+    const leaveid:LeaveId={
+      id:this.id
+
+    }
+    this.approveOrRejectServices.cancel(leaveid).subscribe((data:any)=>{
+      console.log(data);
+    });
+
   }
 
 }

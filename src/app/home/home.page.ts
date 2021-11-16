@@ -11,6 +11,7 @@ export class HomePage {
   
   empId:any;
   date:any;
+  empRole:any;
   constructor(
     private platform: Platform,
     private router:Router,
@@ -27,7 +28,9 @@ export class HomePage {
   
   ngOnInit() {
     this.empId=localStorage.getItem('empId');
+    this.empRole=localStorage.getItem('empRole');
     console.log(this.empId);
+    console.log(this.empRole)
    
   }
 

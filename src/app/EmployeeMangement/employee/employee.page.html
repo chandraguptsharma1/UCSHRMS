@@ -38,7 +38,7 @@
   </ion-header>
 
   <ion-content>
-    <ion-card *ngFor="let item of employees" style="background-color: rgb(218, 245, 218);" [routerLink]="['/update-employee-details/', item.id]">
+    <ion-card *ngFor="let item of employees" style="background-color: rgb(218, 245, 218);" [routerLink]="['/update-employee-details/', item.empId]">
       <ion-grid>
       <ion-row>
         <ion-col style="background-color: darkcyan; text-align: center;" size="4">

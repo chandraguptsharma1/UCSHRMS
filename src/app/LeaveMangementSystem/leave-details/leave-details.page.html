@@ -105,18 +105,25 @@
           </ion-row>
         </ion-grid>
       </ion-item>
+      <div *ngIf="empRole=='manager'">
+        <ion-grid style="text-align: center;margin-top: 20px;">
+          <ion-row>
+            <ion-col >
+              <ion-button (click)="approve()" [disabled]="isStatusReject()">Approve </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button (click)="reject()" [disabled]="isStatusApprove()">Reject </ion-button>
+            </ion-col>
+  
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div *ngIf="empRole=='Aa'" style="text-align: center;margin-top: 10px;">
+        <ion-button (click)="cancel()">Cancel </ion-button>
+       
+      </div>
 
-      <ion-grid style="text-align: center;margin-top: 20px;">
-        <ion-row>
-          <ion-col >
-            <ion-button (click)="approve()" [disabled]="isStatusReject()">Approve </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button (click)="reject()" [disabled]="isStatusApprove()">Reject </ion-button>
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
+      
       
      
     </ion-list>

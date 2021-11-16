@@ -43,6 +43,7 @@ export class LoginPage implements OnInit {
     ],
     
     
+    
     }
   ngOnInit(): void {
     
@@ -66,6 +67,8 @@ export class LoginPage implements OnInit {
       //   this.toastService.presentToast('Not A Valid User.');
       if(data.resCode==200){
         localStorage.setItem('empId',data.resEmpId);
+        localStorage.setItem('empName',data.resName);
+        localStorage.setItem('empRole',data.resRole);
         this.toastService.presentToast('Welcome '+data.resName);
         this.router.navigate(['/home']);
         this.loading.dismiss();

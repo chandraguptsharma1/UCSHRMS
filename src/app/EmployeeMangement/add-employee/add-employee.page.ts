@@ -72,7 +72,7 @@ export class AddEmployeePage implements OnInit {
     const designation = this.employeeForm.get('designation').value
     const dob = this.employeeForm.get('dob').value
     const requestBody= `{empName:${dob},mobileNumber:${mobileNumber}}`
-    console.log(requestBody);
+    console.log(joindate);
 
     // const empId = '101'
     // const empName = 'test'

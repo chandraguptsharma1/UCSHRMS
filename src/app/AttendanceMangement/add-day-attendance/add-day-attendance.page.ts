@@ -76,11 +76,12 @@ export class AddDayAttendancePage implements OnInit {
   }
   page:any;
   ngOnInit() {
-    // console.log('>>date Selected',this.router.getCurrentNavigation().extras.state);
-    // var date1 = this.router.getCurrentNavigation().extras.state;
-    // console.log(JSON.stringify(date1.dateSelected))
-    // this.date = new Date(JSON.stringify(date1.dateSelected));
-    // console.log(this.date)
+    console.log('>>date Selected',this.router.getCurrentNavigation().extras.state);
+    var date1 = this.router.getCurrentNavigation().extras.state;
+    console.log(JSON.stringify(date1.dateSelected))
+    this.date = new Date(date1.dateSelected);
+    // this.date = new Date()
+    console.log(this.date)
 
   }
 

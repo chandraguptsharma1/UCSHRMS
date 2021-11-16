@@ -6,6 +6,7 @@ import { leave } from 'src/app/model/leave.module';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LeaveService } from 'src/app/services/leave/leave.service';
 import { LoaderService } from 'src/app/services/loading/loader.service';
+import { ManagerService } from 'src/app/services/manager/manager.service';
 import { ToastService } from 'src/app/services/toastMessage/toast.service';
 
 
@@ -18,12 +19,15 @@ import { ToastService } from 'src/app/services/toastMessage/toast.service';
 export class AddLeavePage implements OnInit {
   // addLeave:any ={}; 
   addLeaveForm: FormGroup;
-  empId: string;
+  empId: any;
   date: any;
+  managerEmpId:any;
+  managerName:any
 
 
 
   constructor(
+    private managerService:ManagerService,
     private toastService: ToastService,
     private fb: FormBuilder, 
     private leaveService: LeaveService,
@@ -79,7 +83,9 @@ export class AddLeavePage implements OnInit {
     const requestBody=`{empName:${type},mobileNumber:${manager}}`
     console.log(requestBody);
     const userDetails: leave = {
-      id:parseInt(this.empId),
+      managerEmpId:this.managerEmpId,
+      managerName:this.managerName,
+      empId:this.empId,
       leaveType: type,
       reason:reasons,
       startDate: startDate,
@@ -101,11 +107,15 @@ export class AddLeavePage implements OnInit {
   }
 
   ngOnInit() {
-    this.empId = '101';
+    this.empId = localStorage.getItem('empId');
     console.log(this.empId);
     this.date = Date.now();
     console.log(this.date);
-
+    this.managerName= "Kalyan",
+    this.managerEmpId="UCS104"
+    this.managerService.getManager().subscribe((data:any)=>{
+      console.log(data)
+    });
 
   }
   back(){

@@ -36,7 +36,7 @@ export class AddPaySlipPage implements OnInit {
     const reader = new FileReader();
     const file = ev.target.files[0];
     this.filename= file.name;
-    if(this.filename == this.documentType){
+    // if(this.filename == this.documentType){
       reader.onload = (event) => {
         const data = reader.result;
         workBook = XLSX.read(data, {
@@ -56,9 +56,9 @@ export class AddPaySlipPage implements OnInit {
         // this.saveFile(dataString)
       }
       reader.readAsBinaryString(file);
-    }else{
-      console.log('not xlsx file')
-    }
+    // }else{
+    //   console.log('not xlsx file')
+    // }
     
   }
   // onFileChange1(ev) {
@@ -93,7 +93,7 @@ export class AddPaySlipPage implements OnInit {
   // }
 
   back(){
-    this.navCtrl.navigateBack('/home');
+    this.navCtrl.navigateBack('/pay-slip');
   }
 
   saveFile(): void{

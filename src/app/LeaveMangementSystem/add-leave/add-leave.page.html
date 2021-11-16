@@ -31,7 +31,16 @@
   </div> -->
 
  <form  [formGroup]="addLeaveForm" (ngSubmit)="submitleaveForm()">
+
     <ion-card style="padding: 13px;">
+      <ion-item>
+        <ion-label>Manager</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option value="mahesh  sir">mahesh sir</ion-select-option>
+          <ion-select-option value="jyoti maam">jyoti maam</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
       <ion-item>
         <ion-label>Type Of Leave</ion-label>
         <ion-select  okText="Okay" cancelText="Dismiss" formControlName="type">

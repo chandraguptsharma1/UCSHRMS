@@ -19,7 +19,7 @@ const routes: Routes = [
     loadChildren: () => import('./EmployeeMangement/employee/employee.module').then( m => m.EmployeePageModule) 
   },
   {
-    path: 'update-employee-details/:id',
+    path: 'update-employee-details/:empId',
     loadChildren: () => import('./EmployeeMangement/update-employee/update-employee.module').then( m => m.UpdateEmployeePageModule)
   },
   {
@@ -86,9 +86,29 @@ const routes: Routes = [
     loadChildren: () => import('./Anniversery/my-feed/my-feed.module').then( m => m.MyFeedPageModule)
   },
   {
-    path: 'adddayattendance/:d',
+    path: 'adddayattendance',
     loadChildren: () => import('./AttendanceMangement/add-day-attendance/add-day-attendance.module').then( m => m.AddDayAttendancePageModule)
   },
+  {
+    path: 'managerleave',
+    loadChildren: () => import('./LeaveMangementSystem/leave/managerleave/managerleave.module').then( m => m.ManagerleavePageModule)
+  },
+  {
+    path: 'userleave',
+    loadChildren: () => import('./LeaveMangementSystem/leave/userleave/userleave.module').then( m => m.UserleavePageModule)
+  },
+  
+  {
+    path: 'managerleave-details/:id',
+    loadChildren: () => import('./LeaveMangementSystem/leave/managerleave-details/managerleave-details.module').then( m => m.ManagerleaveDetailsPageModule)
+  },
+  {
+    path: 'upload-document',
+    loadChildren: () => import('./EmployeeMangement/upload-document/upload-document.module').then( m => m.UploadDocumentPageModule)
+  },
+
+
+
 
 
   

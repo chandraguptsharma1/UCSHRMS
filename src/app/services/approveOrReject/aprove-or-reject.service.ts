@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApproveOrReject } from 'src/app/model/approveOrreject/approve/reject.module';
+import { LeaveId } from 'src/app/model/getLeaveId/getleaveId.module';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,5 +15,12 @@ export class AproveOrRejectService {
     const headers= new HttpHeaders()
   .set('content-type', 'application/json')
     return this.http.post<ApproveOrReject>(`${this.Api_url}cancelrequest`,approveOrReject,{ 'headers': headers });
+  }
+
+  cancel(cancel:LeaveId){
+    const headers= new HttpHeaders()
+    .set('content-type', 'application/json')
+      return this.http.post<ApproveOrReject>(`${this.Api_url}cancelrequest`,cancel,{ 'headers': headers });
+
   }
 }

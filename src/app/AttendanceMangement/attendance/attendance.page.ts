@@ -33,7 +33,42 @@ export class AttendancePage implements OnInit {
   geValue: any;
   allday: any = []
   allSaturdayDate: any = []
-
+  weekData:any=[]
+  empId:any
+  matchdate:any = [
+    {
+         "empId":"101",                
+         "startTime":"2021-10-07T08:29:31.391+00:00",
+         "endTime":"2021-10-07T08:29:31.391+00:00",                          
+         "projectId":"101",
+         "description":"This project is of Hrms",        
+         "attendedDate":"2021-01-16T11:53:20.000+00:00"
+      },
+      {
+        "empId":"101",                
+        "startTime":"2021-10-07T08:29:31.391+00:00",
+        "endTime":"2021-10-07T08:29:31.391+00:00",                          
+        "projectId":"101",
+        "description":"This project is of Hrms",        
+        "attendedDate":"2021-01-16T11:53:20.000+00:00"
+     },
+     {
+      "empId":"101",                
+      "startTime":"2021-10-07T08:29:31.391+00:00",
+      "endTime":"2021-10-07T08:29:31.391+00:00",                          
+      "projectId":"101",
+      "description":"This project is of Hrms",        
+      "attendedDate":"2021-01-16T11:53:20.000+00:00"
+   },
+   {
+    "empId":"101",                
+    "startTime":"2021-10-07T08:29:31.391+00:00",
+    "endTime":"2021-10-07T08:29:31.391+00:00",                          
+    "projectId":"101",
+    "description":"This project is of Hrms",        
+    "attendedDate":"2021-01-16T11:53:20.000+00:00"
+ }
+]
   constructor(
     private navCtrl: NavController,
     private sharedS: WeekAndDayRangeService,
@@ -44,12 +79,13 @@ export class AttendancePage implements OnInit {
   ngOnInit() {
 
     const st = this.getAllSaturday(2021)
-    console.log('=====>', st[0])
+    // console.log('=====>', st[0])
     this.saturdayAll = st
     // this.all();
 
     // this.dateRange = '30/10/2021'
-
+    this.empId  = localStorage.getItem('empId');
+    console.log(this.empId);
 
   }
 
@@ -68,7 +104,7 @@ export class AttendancePage implements OnInit {
 
   getValue() {
     // console.log(this.dateRange)
-    this.geValue = this.dateRange;
+    this.geValue = new Date(this.dateRange);
     console.log(this.geValue)
 
     const d = new Date(this.dateRange);
@@ -82,31 +118,50 @@ export class AttendancePage implements OnInit {
       const d = new Date(this.dateRange);
       d.setDate(d.getDate() - i)
     
-      return { d }
+      return {d}
     })
-    console.log('start date', JSON.stringify(this.allday.reverse()))
-    this.allSaturdayDate = JSON.stringify(this.allday)
-    // var start = new Date(this.dateRange);
-    // var end = new Date(start.setFullYear(start.getDate()-5));
-    // start.setDate(start.getDate()-5);
-    // var end = new Date(start.setDate(d.getDate()+(6 - this.dateRange)));
-    // console.log(start);
-    // console.log(end);
-
-
-    // let days=null;
-    // console.log(this.dateRange);
-    // this.dateall = this.dateRange.split(',');
-    // console.log(this.dateall[0]);
-    // const dates = this.sharedS.getDateRange(d,this.dateRange);
-    // const weeksGrouped = this.sharedS.getWeeksMapped(dates);
+    // console.log('start date', JSON.stringify(this.allday.reverse()))
+    this.allSaturdayDate =this.allday
+   
     const UserAttendance: getAttendance = {
+      empId:this.empId,
       attendedDate: this.geValue
     }
+    
+    console.log(UserAttendance);
+    // console.log(UserAttendance);
+    // console.log(this.matchdate);
+    // var t = this.matchdate[0];
+    // var p = new Date(t.attendedDate);
+    // console.log(p);
+    console.log(this.allSaturdayDate)
+    // var v = this.allSaturdayDate;
+    
+    // for(let i = 0;i<this.matchdate;i++){
+    //   for(let j =0;i<this.allSaturdayDate;j++){
+    //     if(this.matchdate[i.])
+    //   }
+
+    // }
+
 
     this.attendanceService.getUserAttendance(UserAttendance).subscribe((response: any) => {
       console.log(response);
+      this.weekData = response;
     })
+    // if(p == v){
+    //   console.log(true);   
+    // }else{
+    //   console.log(false); 
+    // }
+
+    var newData = []
+      for(let i = 0;i<this.allSaturdayDate;i++){
+        for(let j =0;i<this.weekData;j++){
+          
+        }
+  
+      }
 
 
   }
@@ -137,16 +192,23 @@ export class AttendancePage implements OnInit {
     return el.d;
   }
 
-  addPagePassData() {
-    console.log(this.geValue)
+  // addPagePassData() {
+  //   console.log(this.geValue)
 
-    // const navigationExtras:NavigationExtras ={
-    //   state:{
-    //     range:this.geValue
-    //   }
-    // };
-    this.router.navigateByUrl('/add-day-attendance', {
-      state: { dateSelected: this.geValue }
+  //   // const navigationExtras:NavigationExtras ={
+  //   //   state:{
+  //   //     range:this.geValue
+  //   //   }
+  //   // };
+  //   this.router.navigateByUrl('/add-day-attendance', {
+  //     state: { dateSelected: this.geValue }
+  //   });
+  // }
+
+  onShow(event:any,data) {
+    console.log(data);
+    this.router.navigateByUrl('/adddayattendance', {
+      state: { dateSelected: data }
     });
   }
 
