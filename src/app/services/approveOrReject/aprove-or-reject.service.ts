@@ -11,16 +11,16 @@ export class AproveOrRejectService {
   private Api_url = environment.baseUrl
   constructor(private http:HttpClient) { }
 
-  approveRequest(approveOrReject:ApproveOrReject){
+  approveRequest(role:any,approveOrReject:ApproveOrReject){
     const headers= new HttpHeaders()
   .set('content-type', 'application/json')
-    return this.http.post<ApproveOrReject>(`${this.Api_url}cancelrequest`,approveOrReject,{ 'headers': headers });
+    return this.http.post<ApproveOrReject>(`${this.Api_url}cancelrequest`+'/'+role,approveOrReject,{ 'headers': headers });
   }
 
-  cancel(cancel:LeaveId){
-    const headers= new HttpHeaders()
-    .set('content-type', 'application/json')
-      return this.http.post<ApproveOrReject>(`${this.Api_url}cancelrequest`,cancel,{ 'headers': headers });
+  cancel(id:any){
+    // const headers= new HttpHeaders()
+    // .set('content-type', 'application/json')
+      return this.http.get(`${this.Api_url}cancel`+'/'+id);
 
   }
 }

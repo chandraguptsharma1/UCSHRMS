@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { employeeleave } from 'src/app/model/employeeleave/employeeleave.module';
 import { LeaveId } from 'src/app/model/getLeaveId/getleaveId.module';
 import { leave } from 'src/app/model/leave.module';
 import { environment } from 'src/environments/environment';
@@ -15,7 +16,7 @@ export class LeaveService {
   leave(userDetails:leave){
     const headers= new HttpHeaders()
   .set('content-type', 'application/json')
-  .set('Access-Control-Allow-Origin', '*');
+  // .set('Access-Control-Allow-Origin', '*');
     return this.http.post<leave>(`${this.Api_url}add-leaverequest`,userDetails,{ 'headers': headers });
   }
 
@@ -32,6 +33,14 @@ export class LeaveService {
 
    getLeaveManager(){
     return this.http.get<leave>(`${this.Api_url}managerLeaveRequest`);
+   }
+
+   getstatusLeave(status:any,employeeleave:employeeleave){
+    const headers= new HttpHeaders()
+    .set('content-type', 'application/json')
+    // .set('Access-Control-Allow-Origin', '*');
+    return this.http.post<LeaveId>(`${this.Api_url}managerPendingRequest`+'/'+status,employeeleave,{ 'headers': headers });
+
    }
 }
 

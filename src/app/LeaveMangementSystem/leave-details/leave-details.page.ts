@@ -35,10 +35,10 @@ export class LeaveDetailsPage implements OnInit {
       id:this.id,
       status: "approve"
     }
-    this.approveOrRejectServices.approveRequest(approve).subscribe((response) => {
+    this.approveOrRejectServices.approveRequest(this.empRole,approve).subscribe((response) => {
       this.loading.dismiss();
       this.toastService.presentToast("Approve Leave");
-      this.router.navigate(['/home']);
+      this.router.navigate(['/leave']);
     })
     
     
@@ -48,14 +48,15 @@ export class LeaveDetailsPage implements OnInit {
 
   reject(){
     this.loading.present();
+    
     const approve: ApproveOrReject = {
       id:this.id,
       status: "reject"
     }
-    this.approveOrRejectServices.approveRequest(approve).subscribe((response) => {
+    this.approveOrRejectServices.approveRequest(this.empRole,approve).subscribe((response) => {
       this.loading.dismiss();
       this.toastService.presentToast("Reject Leave");
-      this.router.navigate(['/home']);
+      this.router.navigate(['/leave']);
     }) 
   }
 
@@ -80,31 +81,32 @@ export class LeaveDetailsPage implements OnInit {
   }
 
   isStatusReject(){
-    if (this.leaveDetails.status=='reject') return true ;
-    else if(this.leaveDetails.status=='approve') return true;
+    if (this.leaveDetails.status=='Reject') return true ;
+    else if(this.leaveDetails.status=='Approve') return true;
                      return false ;
   }
 
   isStatusApprove(){
-    if (this.leaveDetails.status=='approve') return true ;
-    if (this.leaveDetails.status=='reject') return true ;
+    if (this.leaveDetails.status=='Approve') return true ;
+    if (this.leaveDetails.status=='Reject') return true ;
                      return false ;
   }
 
   getColor(status){(2)
     switch(status){
-      case 'approve':
+      case 'Approve':
         return 'green';
-      case 'reject':
+      case 'Reject':
         return 'red';
     }
   }
   cancel(){
-    const leaveid:LeaveId={
-      id:this.id
+    // const leaveid:LeaveId={
+    //   id:this.id
 
-    }
-    this.approveOrRejectServices.cancel(leaveid).subscribe((data:any)=>{
+    // }
+    console.log(this.id)
+    this.approveOrRejectServices.cancel(this.id).subscribe((data:any)=>{
       console.log(data);
     });
 

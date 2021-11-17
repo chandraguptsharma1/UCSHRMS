@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-upload-document',
@@ -18,7 +18,8 @@ export class UploadDocumentPage implements OnInit {
   constructor(private modalCtr: ModalController,
     private http: HttpClient,
     private activatedRoute:ActivatedRoute,
-    private router:Router, ) { 
+    private router:Router,
+    private navCtrl:NavController ) { 
       // this.id = this.activatedRoute.snapshot.paramMap.get('empId');
     // console.log(this.id);
   }
@@ -59,6 +60,10 @@ export class UploadDocumentPage implements OnInit {
         console.log(res);
         this.router.navigate(['/update-employee-details/'+this.id]);
       });
+      }
+
+      back(){
+        this.navCtrl.navigateBack('/employee');
       }
 }
 

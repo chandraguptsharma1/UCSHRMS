@@ -83,7 +83,7 @@
  
   <ion-list>   
       <ion-item  *ngFor="let data of allday;" (click)="onShow($event,data)">       
-        <ion-label >{{data |date:'EE dd'}}</ion-label>
+        <ion-label >{{data.d |date:'EE dd'}}</ion-label>
         <!-- <a [routerLink]="['adddayattendance']"[queryParams]="{data.d}"></a> -->
         <!-- <ion-button  (click)="addPagePassData()">Add</ion-button> -->
       </ion-item>   

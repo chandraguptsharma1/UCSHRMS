@@ -43,7 +43,7 @@
   </div>
   
   
-  <div *ngIf="userRole=='Aa'">
+  <div *ngIf="userRole=='employee'">
     <ion-card *ngFor="let leave of leaves" [routerLink]="['/leave-details/', leave.id]">
       <ion-list>
         <ion-grid>

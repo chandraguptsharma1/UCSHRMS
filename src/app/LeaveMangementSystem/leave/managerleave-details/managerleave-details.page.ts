@@ -29,35 +29,35 @@ export class ManagerleaveDetailsPage implements OnInit {
     console.log(this.id);
   }
 
-  approve() {
-    this.loading.present();
-    const approve: ApproveOrReject = {
-      id:this.id,
-      status: "approve"
-    }
-    this.approveOrRejectServices.approveRequest(approve).subscribe((response) => {
-      this.loading.dismiss();
-      this.toastService.presentToast("Approve Leave");
-      this.router.navigate(['/home']);
-    })
+  // approve() {
+  //   this.loading.present();
+  //   const approve: ApproveOrReject = {
+  //     id:this.id,
+  //     status: "approve"
+  //   }
+  //   this.approveOrRejectServices.approveRequest(approve).subscribe((response) => {
+  //     this.loading.dismiss();
+  //     this.toastService.presentToast("Approve Leave");
+  //     this.router.navigate(['/home']);
+  //   })
     
     
 
 
-  }
+  // }
 
-  reject(){
-    this.loading.present();
-    const approve: ApproveOrReject = {
-      id:this.id,
-      status: "reject"
-    }
-    this.approveOrRejectServices.approveRequest(approve).subscribe((response) => {
-      this.loading.dismiss();
-      this.toastService.presentToast("Reject Leave");
-      this.router.navigate(['/home']);
-    }) 
-  }
+  // reject(){
+  //   this.loading.present();
+  //   const approve: ApproveOrReject = {
+  //     id:this.id,
+  //     status: "reject"
+  //   }
+  //   this.approveOrRejectServices.approveRequest(approve).subscribe((response) => {
+  //     this.loading.dismiss();
+  //     this.toastService.presentToast("Reject Leave");
+  //     this.router.navigate(['/home']);
+  //   }) 
+  // }
 
   ionViewDidEnter() {
     const leaveid:LeaveId={

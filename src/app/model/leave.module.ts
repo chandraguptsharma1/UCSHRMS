@@ -7,4 +7,5 @@ export interface leave{
     startDate: string,
     endDate: string,
     description: string
+    status:string
 }

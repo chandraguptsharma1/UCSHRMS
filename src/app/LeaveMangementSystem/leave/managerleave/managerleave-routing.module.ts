@@ -6,7 +6,21 @@ import { ManagerleavePage } from './managerleave.page';
 const routes: Routes = [
   {
     path: '',
-    component: ManagerleavePage
+    component: ManagerleavePage,
+    children:[
+      {
+        path:'pendingleave',
+        loadChildren: () => import('../managerleave/pendingleave/pendingleave.module').then( m => m.PendingleavePageModule)
+      },
+      {
+        path:'rejectleave',
+        loadChildren: () => import('../managerleave/rejectleave/rejectleave.module').then( m => m.RejectleavePageModule)
+      },
+      {
+        path:'approveleave',
+        loadChildren: () => import('../managerleave/approveleave/approveleave.module').then( m => m.ApproveleavePageModule)
+      }
+    ]
   }
 ];
 

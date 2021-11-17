@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import * as XLSX from 'xlsx';
 import { PayslipService } from 'src/app/services/empPayslip.service';
+import { LoaderService } from 'src/app/services/loading/loader.service';
+import { EmployeeService } from 'src/app/services/employee/employee.service';
+import { FormBuilder } from '@angular/forms';
+import { ToastService } from 'src/app/services/toastMessage/toast.service';
 
 @Component({
   selector: 'app-add-pay-slip',
@@ -20,7 +24,15 @@ export class AddPaySlipPage implements OnInit {
   jsonall:any;
   jsonData:any
 
-  constructor(  private uploadf:PayslipService,private navCtrl:NavController,) {
+  constructor( 
+    private router:Router,
+    private toastService: ToastService,
+    private fb : FormBuilder,
+    private employeeService:EmployeeService,
+    private loading:LoaderService,
+    
+     private uploadf:PayslipService,
+     private navCtrl:NavController,) {
 
      }
 
@@ -97,12 +109,16 @@ export class AddPaySlipPage implements OnInit {
   }
 
   saveFile(): void{
+    this.loading.present();
 
 
 
     this.uploadf.UploadFile(this.jsonData).subscribe((data:any)=>{
 
        console.log('uploaded===>',data)
+       this.toastService.presentToast('PaySlip Added');
+       this.router.navigate(['/pay-slip']);
+       this.loading.dismiss();
     })
   }
 

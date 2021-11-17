@@ -120,7 +120,7 @@ export class AttendancePage implements OnInit {
     
       return {d}
     })
-    // console.log('start date', JSON.stringify(this.allday.reverse()))
+    
     this.allSaturdayDate =this.allday
    
     const UserAttendance: getAttendance = {
@@ -128,40 +128,37 @@ export class AttendancePage implements OnInit {
       attendedDate: this.geValue
     }
     
-    console.log(UserAttendance);
     // console.log(UserAttendance);
-    // console.log(this.matchdate);
-    // var t = this.matchdate[0];
-    // var p = new Date(t.attendedDate);
-    // console.log(p);
-    console.log(this.allSaturdayDate)
-    // var v = this.allSaturdayDate;
     
-    // for(let i = 0;i<this.matchdate;i++){
-    //   for(let j =0;i<this.allSaturdayDate;j++){
-    //     if(this.matchdate[i.])
-    //   }
-
-    // }
+    // console.log(this.allSaturdayDate)
+    
 
 
     this.attendanceService.getUserAttendance(UserAttendance).subscribe((response: any) => {
       console.log(response);
       this.weekData = response;
     })
-    // if(p == v){
-    //   console.log(true);   
-    // }else{
-    //   console.log(false); 
-    // }
+   
 
     var newData = []
-      for(let i = 0;i<this.allSaturdayDate;i++){
-        for(let j =0;i<this.weekData;j++){
-          
+      for(let i = 0;i<this.allSaturdayDate.length;i++){
+        for(let j =0;j<this.weekData.length;j++){
+          if(this.allSaturdayDate[i].d==this.weekData[j].attendedDate){
+            //  newData.push(this.weekData[j]);
+            console.log(true)
+             
+          }else{
+            newData.push({
+              date:this.allSaturdayDate[i].d,
+              noData:""
+            })
+          }
+          console.log('new Data',newData);
         }
-  
+       
       }
+
+      
 
 
   }

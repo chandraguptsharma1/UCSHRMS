@@ -51,6 +51,7 @@ export class AddDayAttendancePage implements OnInit {
   }
 
   submitAttendance(){
+    this.loading.present();
     const projectId = this.attendanceForm.get('projectId').value
     const startDate = this.attendanceForm.get('startDate').value
     const endDate = this.attendanceForm.get('endDate').value
@@ -67,6 +68,9 @@ export class AddDayAttendancePage implements OnInit {
     this.attendanceService.UserAttendance(attendanceadddetails).subscribe((response:any)=>{
        console.log(response);
        console.log("im in")
+       this.loading.dismiss();
+       this.toastService.presentToast("Attendance Added");
+      this.router.navigate(['/attendance']);
     })
   }
 
@@ -78,8 +82,8 @@ export class AddDayAttendancePage implements OnInit {
   ngOnInit() {
     console.log('>>date Selected',this.router.getCurrentNavigation().extras.state);
     var date1 = this.router.getCurrentNavigation().extras.state;
-    console.log(JSON.stringify(date1.dateSelected))
-    this.date = new Date(date1.dateSelected);
+    console.log(date1.dateSelected.d)
+    this.date = new Date(date1.dateSelected.d);
     // this.date = new Date()
     console.log(this.date)
 

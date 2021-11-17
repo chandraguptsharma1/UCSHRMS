@@ -9,12 +9,12 @@ import { LeaveService } from 'src/app/services/leave/leave.service';
   styleUrls: ['./managerleave.page.scss'],
 })
 export class ManagerleavePage implements OnInit {
-  userType : string;
-  userTypeId: number;
-  leaves:any=[];
-  startdate:any;
-  status:any;
-  empId:any;
+  // userType : string;
+  // userTypeId: number;
+  // leaves:any=[];
+  // startdate:any;
+  // status:any;
+  // empId:any;
 
   constructor(
     private leaveService:LeaveService,
@@ -24,44 +24,44 @@ export class ManagerleavePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.empId = localStorage.getItem('empId');
-    console.log(this.empId);
+    // this.empId = localStorage.getItem('empId');
+    // console.log(this.empId);
   }
 
-  async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'You Can Approve Or Reject ',
-      buttons: [
-        {
-          text: 'Approve',
-          role: 'Approve',
-          cssClass: 'secondary',
-          handler: (value) => {
-            console.log('Approve');
-            this.status=1;
-          }
-        }, {
-          text: 'Reject',
-          handler: () => {
-            console.log('Reject');
-            this.status=2;
-          }
-        }
-      ]
-    });
+  // async presentAlertConfirm() {
+  //   const alert = await this.alertController.create({
+  //     cssClass: 'my-custom-class',
+  //     header: 'Confirm!',
+  //     message: 'You Can Approve Or Reject ',
+  //     buttons: [
+  //       {
+  //         text: 'Approve',
+  //         role: 'Approve',
+  //         cssClass: 'secondary',
+  //         handler: (value) => {
+  //           console.log('Approve');
+  //           this.status=1;
+  //         }
+  //       }, {
+  //         text: 'Reject',
+  //         handler: () => {
+  //           console.log('Reject');
+  //           this.status=2;
+  //         }
+  //       }
+  //     ]
+  //   });
 
-    await alert.present();
-  }
-  getColor(status){(2)
-    switch(status){
-      case 'approve':
-        return 'green';
-      case 'reject':
-        return 'red';
-    }
-  }
+  //   await alert.present();
+  // }
+  // getColor(status){(2)
+  //   switch(status){
+  //     case 'approve':
+  //       return 'green';
+  //     case 'reject':
+  //       return 'red';
+  //   }
+  // }
 
   ionViewDidEnter() {
   //   this.leaveService.getleave().subscribe((response) => {

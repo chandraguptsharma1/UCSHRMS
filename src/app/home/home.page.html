@@ -43,23 +43,22 @@
           </ion-card>       
         </ion-col>
       </ion-row>
+    </ion-grid> 
+  </div>
+  <div *ngIf="empRole == 'manager'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" >
+          <ion-card routerLink="/employee" >
+            <ion-list style="text-align: center;">
+              <img style="height: 60px;width: 60px;padding-top: 10px;" src="../../assets/employee.png">
+              <h5 style="font-size: 10px;">Employee Management</h5>
+            </ion-list>
+          </ion-card>       
+        </ion-col>
+        
+      </ion-row>
     </ion-grid>
-    <div>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6" >
-            <ion-card routerLink="/employee" >
-              <ion-list style="text-align: center;">
-                <img style="height: 60px;width: 60px;padding-top: 10px;" src="../../assets/employee.png">
-                <h5 style="font-size: 10px;">Employee Management</h5>
-              </ion-list>
-            </ion-card>       
-          </ion-col>
-          
-        </ion-row>
-      </ion-grid>
-    </div>
-   
   </div>
   
   

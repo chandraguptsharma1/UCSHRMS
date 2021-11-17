@@ -40,6 +40,19 @@
         <ion-grid>
           <ion-row>
             <ion-col>
+              <ion-label style="font-weight: bold;">Emp Name</ion-label>
+            </ion-col>
+            <ion-col style="text-align: end;">
+              <ion-label>{{leaveDetails.empName}}</ion-label>
+            </ion-col>
+  
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
               <ion-label style="font-weight: bold;">leaveType</ion-label>
             </ion-col>
             <ion-col style="text-align: end;">
@@ -49,6 +62,7 @@
           </ion-row>
         </ion-grid>
       </ion-item>
+
 
       <ion-item>
         <ion-grid>
@@ -118,7 +132,7 @@
           </ion-row>
         </ion-grid>
       </div>
-      <div *ngIf="empRole=='Aa'" style="text-align: center;margin-top: 10px;">
+      <div *ngIf="empRole=='employee'" style="text-align: center;margin-top: 10px;">
         <ion-button (click)="cancel()">Cancel </ion-button>
        
       </div>

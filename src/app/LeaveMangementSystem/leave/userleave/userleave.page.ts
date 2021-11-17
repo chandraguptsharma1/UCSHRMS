@@ -14,6 +14,7 @@ export class UserleavePage implements OnInit {
   leaves:any=[];
   startdate:any;
   status:any;
+  empId:any
 
   constructor(
     private leaveService:LeaveService,
@@ -23,6 +24,7 @@ export class UserleavePage implements OnInit {
     ) { }
 
   ngOnInit() {
+   this.empId = localStorage.getItem('empId')
   }
   getColor(status){(2)
     switch(status){
@@ -34,7 +36,7 @@ export class UserleavePage implements OnInit {
   }
 
   ionViewDidEnter() {
-    this.leaveService.getLeaveManager().subscribe((response) => {
+    this.leaveService.getleave(this.empId).subscribe((response) => {
       if(response !=null){
         this.leaves = response;
         this.startdate = this.leaves.startDate

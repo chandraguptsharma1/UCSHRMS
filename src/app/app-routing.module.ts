@@ -105,7 +105,19 @@ const routes: Routes = [
   {
     path: 'upload-document',
     loadChildren: () => import('./EmployeeMangement/upload-document/upload-document.module').then( m => m.UploadDocumentPageModule)
+  },  {
+    path: 'pendingleave',
+    loadChildren: () => import('./LeaveMangementSystem/leave/managerleave/pendingleave/pendingleave.module').then( m => m.PendingleavePageModule)
   },
+  {
+    path: 'rejectleave',
+    loadChildren: () => import('./LeaveMangementSystem/leave/managerleave/rejectleave/rejectleave.module').then( m => m.RejectleavePageModule)
+  },
+  {
+    path: 'approveleave',
+    loadChildren: () => import('./LeaveMangementSystem/leave/managerleave/approveleave/approveleave.module').then( m => m.ApproveleavePageModule)
+  },
+
 
 
 

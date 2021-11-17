@@ -1,26 +1,6 @@
 
-
 <ion-content>
-  <div >
-    <ion-tabs>
-      <!-- Tab bar -->
-      <ion-tab-bar slot="top">
-        <ion-tab-button tab="pendingleave">
-          <!-- <ion-icon name="person"></ion-icon> -->
-          <ion-label>Pending Leave</ion-label>
-        </ion-tab-button>
-        <ion-tab-button tab="rejectleave">
-          <!-- <ion-icon name="call"></ion-icon> -->
-          <ion-label>Reject Leave</ion-label>
-        </ion-tab-button>
-        <ion-tab-button tab="approveleave">
-          <!-- <ion-icon name="call"></ion-icon> -->
-          <ion-label>Approve Leave</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </div>
-  <!-- <ion-card *ngFor="let leave of leaves" [routerLink]="['/leave-details/', leave.id]">
+  <ion-card *ngFor="let leave of leaves" [routerLink]="['/leave-details/', leave.id]">
     <ion-list>
       <ion-grid>
         <ion-row>
@@ -36,7 +16,7 @@
           
         </ion-row>
         <br>
-        <div style="text-align: center;" >
+        <div style="text-align: center;" > 
           <ion-label>Reason: {{ leave.reason}}</ion-label>
         </div>
         <ion-col style="color: darkgrey;">
@@ -54,5 +34,7 @@
       </ion-grid>
       
     </ion-list>    
-  </ion-card> -->
+  </ion-card>
+
+
 </ion-content>

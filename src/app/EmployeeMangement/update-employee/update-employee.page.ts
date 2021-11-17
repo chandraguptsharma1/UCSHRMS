@@ -38,6 +38,7 @@ export class UpdateEmployeePage implements OnInit {
   uploadSub: Subscription;
   document:any;
   documentType: string;
+  documentlist:any=[]
   //states:any=[]
   states: any=[
     "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", 
@@ -139,6 +140,7 @@ export class UpdateEmployeePage implements OnInit {
 
     this.employeeService.getDocument(this.empId).subscribe((response)=>{
       console.log(response);
+      this.documentlist = response
     });
   }
   back(){

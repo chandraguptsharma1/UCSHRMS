@@ -90,7 +90,8 @@ export class AddLeavePage implements OnInit {
       reason:reasons,
       startDate: startDate,
       endDate: endDate,
-      description: discription
+      description: discription,
+      status:"Pending"
     }
     console.log(userDetails);
     
