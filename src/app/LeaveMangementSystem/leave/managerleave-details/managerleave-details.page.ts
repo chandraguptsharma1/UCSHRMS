@@ -100,13 +100,13 @@ export class ManagerleaveDetailsPage implements OnInit {
     }
   }
 
-  cancel(){
-    const leaveid:LeaveId={
-      id:this.id
-
-    }
-    this.approveOrRejectServices.cancel(leaveid).subscribe((data:any)=>{
+  cancel(){ 
+    this.loading.present();
+    this.approveOrRejectServices.cancel(this.id).subscribe((data:any)=>{
       console.log(data);
+      this.loading.dismiss();
+      this.toastService.presentToast("Leave Cancel");
+      this.router.navigate(['/leave/userleave']);
     });
 
   }

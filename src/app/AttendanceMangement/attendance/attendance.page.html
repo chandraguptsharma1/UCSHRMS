@@ -82,11 +82,36 @@
   
  
   <ion-list>   
-      <ion-item  *ngFor="let data of allday;" (click)="onShow($event,data)">       
-        <ion-label >{{data.d |date:'EE dd'}}</ion-label>
-        <!-- <a [routerLink]="['adddayattendance']"[queryParams]="{data.d}"></a> -->
-        <!-- <ion-button  (click)="addPagePassData()">Add</ion-button> -->
-      </ion-item>   
+    <ion-card  *ngFor="let data of newSaturdayData;" (click)="onShow($event,data)" style="padding: 10px;">
+      
+      <ion-list>
+        <ion-item>
+          <ion-label>Date: {{data.attendedDate | date:'EE dd'}}</ion-label>
+          <ion-grid>
+            <ion-row  >
+              <div *ngIf="data.empId!=''">
+                <ion-col>
+                  <ion-label>Start Time: {{data.endTime | date:'h:mm a'}}</ion-label>
+                </ion-col>
+                <ion-col style="text-align: end;">
+                  <ion-label>End Time: {{data.startTime | date:'h:mm a'}}</ion-label>
+                </ion-col>     
+              </div>                
+                <div  *ngIf="data.empId==''" style="margin-left: 100px;">
+                  <ion-button style="text-align: end;">
+                    <ion-icon name="add-outline"></ion-icon>
+                  </ion-button>
+                </div>
+                           
+            </ion-row>
+          </ion-grid> 
+        </ion-item>
+     
+      </ion-list>
+      
+    </ion-card>
+
+        
   </ion-list>
   <!-- <ion-card >
     <ion-label>{{saturdayAll|date}}</ion-label>

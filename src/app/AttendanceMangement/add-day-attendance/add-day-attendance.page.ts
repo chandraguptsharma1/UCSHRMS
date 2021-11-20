@@ -83,7 +83,7 @@ export class AddDayAttendancePage implements OnInit {
     console.log('>>date Selected',this.router.getCurrentNavigation().extras.state);
     var date1 = this.router.getCurrentNavigation().extras.state;
     console.log(date1.dateSelected.d)
-    this.date = new Date(date1.dateSelected.d);
+    this.date = new Date(date1.dateSelected.attendedDate);
     // this.date = new Date()
     console.log(this.date)
 

@@ -100,14 +100,13 @@ export class LeaveDetailsPage implements OnInit {
         return 'red';
     }
   }
-  cancel(){
-    // const leaveid:LeaveId={
-    //   id:this.id
-
-    // }
-    console.log(this.id)
+  cancel(){ 
+    this.loading.present();
     this.approveOrRejectServices.cancel(this.id).subscribe((data:any)=>{
       console.log(data);
+      this.loading.dismiss();
+      this.toastService.presentToast("Leave Cancel");
+      this.router.navigate(['/leave/userleave']);
     });
 
   }

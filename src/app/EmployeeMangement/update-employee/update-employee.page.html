@@ -174,22 +174,33 @@
               <ion-icon name="add-circle-outline" style="font-size:30px;"></ion-icon>
             </ion-button>
           </ion-buttons>
-        </ion-col>
-       
+        </ion-col>     
       </ion-row>
+      <div style="padding: 20px;">
+        <ion-item *ngFor="let document of documentlist" >
+          <ion-row>
+            <ion-col style="font-size: 30px;">
+              <ion-icon  name="document-attach-outline"></ion-icon>
+            </ion-col>
+            &nbsp;&nbsp;&nbsp;
+            <ion-col style="font-size: 20px; text-align: end;">
+               <ion-label>{{document.fileName}}</ion-label>
+            </ion-col>
+          </ion-row>
+          <!-- <ion-row >
+            <ion-col style="text-align: center;" size="3">
+              <div style="font-size: 50px;">
+               
+                <ion-icon  name="document-attach-outline"></ion-icon>
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <div>{{document.fileName}}</div>
+            </ion-col>
+          </ion-row> -->
+        </ion-item>
+      </div>
       
-      <ion-item *ngFor="let document of documentlist">
-        <ion-row style="border: 2px; padding: 20px; border-color: black;">
-          <ion-col style="background-color: darkcyan; text-align: center;" size="5">
-            <div>
-              <img src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png" style="height: 80px;">
-            </div>
-          </ion-col>
-          <ion-col style="padding-left: 10px;">
-            <div>{{document.fileName}}</div>
-          </ion-col>
-      </ion-row>
-      </ion-item>
       <!-- <ion-item>
         <ion-row style="border: 2px; padding: 20px; border-color: black;">
           <ion-col style="background-color: darkcyan; text-align: center;" size="5">

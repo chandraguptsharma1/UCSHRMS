@@ -31,6 +31,9 @@
   <!-- <h5>{{ message }}</h5> -->
   <form [formGroup]="attendanceForm" (ngSubmit)="submitAttendance()">
     <ion-card style="padding: 20px;">
+      <div style="text-align: center;padding: 10px;">
+        <ion-label>Date: {{date | date}}</ion-label>
+      </div>    
       <ion-item>
         <ion-label>ProjectId</ion-label>
         <ion-select placeholder="Select One" formControlName="projectId">

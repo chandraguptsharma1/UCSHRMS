@@ -34,7 +34,6 @@
     "@ionic/angular": "^5.8.4",
     "@juggle/resize-observer": "^3.3.1",
     "bootstrap": "^5.1.3",
-    "capacitor-datepicker": "0.0.2",
     "chart.js": "^3.5.1",
     "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-filechooser": "^1.2.0",
