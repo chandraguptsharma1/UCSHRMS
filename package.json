@@ -38,7 +38,7 @@
     "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-filechooser": "^1.2.0",
     "cordova-plugin-filepath": "^1.6.0",
-    "echarts": "^5.2.1",
+    "echarts": "^5.5.0",
     "moment": "^2.29.1",
     "ng2-charts": "^2.2.3",
     "ngx-bootstrap": "^7.1.0",
