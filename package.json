@@ -40,7 +40,7 @@
     "cordova-plugin-filepath": "^1.6.0",
     "echarts": "^5.2.1",
     "moment": "^2.29.1",
-    "ng2-charts": "^2.2.3",
+    "ng2-charts": "^3.0.0",
     "ngx-bootstrap": "^7.1.0",
     "ngx-echarts": "^7.0.2",
     "rxjs": "~6.6.0",
